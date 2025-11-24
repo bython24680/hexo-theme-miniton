@@ -1,0 +1,167 @@
+<!-- 1. Author Widget -->
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-6 text-center border-t-4 border-primary">
+    <div class="w-20 h-20 mx-auto rounded-full bg-slate-100 p-1 mb-4">
+        <img src="<%= theme.avatar %>" alt="Avatar" class="rounded-full w-full h-full object-cover">
+    </div>
+    <h3 class="text-lg font-bold dark:text-white"><%= config.author %></h3>
+    <p class="text-slate-500 dark:text-slate-400 text-sm mb-4"><%= theme.author_title %></p>
+    <div class="flex justify-center gap-3">
+        <% if(theme.social.github) { %><a href="<%= theme.social.github %>" class="text-slate-400 hover:text-primary transition-colors"><i class="fab fa-github"></i></a><% } %>
+        <% if(theme.social.twitter) { %><a href="<%= theme.social.twitter %>" class="text-slate-400 hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a><% } %>
+        <% if(theme.social.email) { %><a href="<%= theme.social.email %>" class="text-slate-400 hover:text-primary transition-colors"><i class="fas fa-envelope"></i></a><% } %>
+    </div>
+</div>
+
+<% if (!is_post()) { %>
+    <!-- Group A: Default Sidebar -->
+    <div class="space-y-6">
+
+        <!-- 2. Website Info -->
+        <% if(theme.sidebar_settings.site_info.enabled) { %>
+            <%
+                var totalWords = 0;
+                site.posts.each(function(post){ totalWords += strip_html(post.content).length; });
+                var wordCountDisplay = totalWords < 1000 ? totalWords : (totalWords / 1000).toFixed(1) + 'k';
+                
+                var startDate = theme.start_date ? new Date(theme.start_date) : new Date();
+                var daysOnline = Math.floor((new Date() - startDate) / (1000 * 60 * 60 * 24));
+                var lastUpdate = site.posts.sort('updated', -1).data[0] ? site.posts.sort('updated', -1).data[0].updated : new Date();
+            %>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-indigo-400 pl-2"><%= theme.sidebar_settings.site_info.title %></h3>
+                <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                    <li class="flex justify-between"><span><i class="fas fa-file-alt w-5 text-slate-400"></i> 文章總數</span> <span class="font-bold"><%= site.posts.length %></span></li>
+                    <li class="flex justify-between"><span><i class="fas fa-clock w-5 text-slate-400"></i> 建站天數</span> <span class="font-bold"><%= daysOnline %></span></li>
+                    <li class="flex justify-between"><span><i class="fas fa-history w-5 text-slate-400"></i> 最後更新</span> <span><%= date(lastUpdate, 'YYYY-MM-DD') %></span></li>
+                    <li class="flex justify-between"><span><i class="fas fa-pen-nib w-5 text-slate-400"></i> 全站字數</span> <span><%= wordCountDisplay %></span></li>
+                </ul>
+            </div>
+        <% } %>
+
+        <!-- 3. Recent Posts -->
+        <% if(theme.sidebar_settings.latest_posts.enabled) { %>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-blue-400 pl-2"><%= theme.sidebar_settings.latest_posts.title %></h3>
+                <ul class="space-y-4">
+                    <% site.posts.sort('date', -1).limit(theme.sidebar_settings.latest_posts.post_count).each(function(post){ %>
+                    <li>
+                        <a href="<%- url_for(post.path) %>" class="block hover:text-primary dark:text-slate-300 dark:hover:text-primary-dark transition-colors text-sm font-medium line-clamp-1 mb-1"><%= post.title %></a>
+                        <span class="text-xs text-slate-400 block"><%= date(post.date, 'YYYY-MM-DD') %></span>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+
+        <!-- 4. Recommended -->
+        <% if(theme.sidebar_settings.recommended_posts.enabled) { %>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-red-400 pl-2"><%= theme.sidebar_settings.recommended_posts.title %></h3>
+                <div class="space-y-4">
+                    <% 
+                    var recTag = theme.sidebar_settings.recommended_posts.tag || 'featured';
+                    var recommendPosts = site.posts.filter(p => p.tags && p.tags.findOne({name: recTag})).limit(theme.sidebar_settings.recommended_posts.post_count);
+                    if(recommendPosts.length === 0) { recommendPosts = site.posts.limit(theme.sidebar_settings.recommended_posts.post_count); }
+                    %>
+                    <% recommendPosts.each(function(post){ %>
+                    <a href="<%- url_for(post.path) %>" class="flex gap-3 group">
+                        <div class="w-16 h-12 bg-slate-200 rounded-md bg-cover bg-center flex-shrink-0" style="background-image: url('<%= post.cover || theme.default_cover || "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=100" %>');"></div>
+                        <div class="flex-1">
+                            <h4 class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary dark:group-hover:text-primary-dark line-clamp-2 leading-snug"><%= post.title %></h4>
+                        </div>
+                    </a>
+                    <% }) %>
+                </div>
+            </div>
+        <% } %>
+
+        <!-- 5. Tags -->
+        <% if(theme.sidebar_settings.tag_list.enabled) { %>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-pink-400 pl-2"><%= theme.sidebar_settings.tag_list.title %></h3>
+                <div class="flex flex-wrap gap-2">
+                    <%- list_tags({ show_count: false, style: 'none', separator: '', class: { a: 'bg-slate-100 dark:bg-slate-700 text-xs px-2 py-1 rounded text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-colors' } }) %>
+                </div>
+            </div>
+        <% } %>
+
+        <!-- 6. Calendar -->
+        <% if(theme.sidebar_settings.calendar_this_month.enabled) { %>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-green-400 pl-2"><%= theme.sidebar_settings.calendar_this_month.title %></h3>
+                <div class="calendar-grid dark:text-slate-300 text-xs">
+                    <% 
+                    var now = new Date();
+                    var year = now.getFullYear();
+                    var month = now.getMonth();
+                    var today = now.getDate();
+                    var firstDay = new Date(year, month, 1).getDay();
+                    var daysInMonth = new Date(year, month + 1, 0).getDate();
+                    %>
+                    <div class="text-slate-400 font-medium pb-2">S</div><div class="text-slate-400 font-medium pb-2">M</div><div class="text-slate-400 font-medium pb-2">T</div><div class="text-slate-400 font-medium pb-2">W</div><div class="text-slate-400 font-medium pb-2">T</div><div class="text-slate-400 font-medium pb-2">F</div><div class="text-slate-400 font-medium pb-2">S</div>
+                    <% for(var i=0; i<firstDay; i++) { %><div></div><% } %>
+                    <% for(var d=1; d<=daysInMonth; d++) { %>
+                        <div class="<%= d === today ? 'today py-1 rounded bg-primary text-white' : 'py-1' %>"><%= d %></div>
+                    <% } %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+<% } else { %>
+    <!-- Case B: Post Detail Sidebar (TOC) -->
+    <div id="toc" class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 sticky top-20 border border-slate-100 dark:border-slate-700 z-10">
+        <h3 class="font-bold mb-4 dark:text-white border-l-4 border-indigo-400 pl-2">目錄</h3>
+        <div class="toc-content text-sm text-slate-600 dark:text-slate-400">
+            <%- toc(page.content, {list_number: false}) %>
+        </div>
+    </div>
+
+    <!-- 2. Related Posts -->
+    <%
+    const currentTags = page.tags.map(t => t.name);
+    const relatedPosts = site.posts.toArray().filter(post => {
+        return post.path !== page.path && post.tags.some(t => currentTags.includes(t.name));
+    });
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const randomPosts = shuffle(relatedPosts).slice(0, theme.sidebar_post_settings.related_posts.post_count);
+    %>
+    <% if (randomPosts.length > 0 && theme.sidebar_post_settings.related_posts.enabled) { %>
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 sticky top-20 border border-slate-100 dark:border-slate-700">
+            <h3 class="font-bold mb-4 dark:text-white border-l-4 border-sky-400 pl-2"><%= theme.sidebar_post_settings.related_posts.title %></h3>
+            <div class="space-y-4">
+            <% randomPosts.forEach(post => { %>
+                <a href="<%- url_for(post.path) %>" class="flex gap-3 group">
+                    <div class="w-16 h-12 bg-slate-200 rounded-md bg-cover bg-center flex-shrink-0" style="background-image: url('<%= post.cover || theme.default_cover || "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=100" %>');"></div>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-medium text-slate-700 dark:text-slate-200 group-hover:text-primary dark:group-hover:text-primary-dark line-clamp-2 leading-snug"><%= post.title %></h4>
+                        <span class="text-xs text-slate-400 block"><%= date(post.date, 'YYYY-MM-DD') %></span>
+                    </div>
+                </a>
+            <% }) %>
+            </div>
+        </div>
+    <% } %>
+    <!-- 3. Recent Posts -->
+    <% if(site.posts.length > 0 && theme.sidebar_post_settings.latest_posts.enabled) { %>
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
+            <h3 class="font-bold mb-4 dark:text-white border-l-4 border-blue-400 pl-2"><%= theme.sidebar_post_settings.latest_posts.title %></h3>
+            <ul class="space-y-4">
+                <% site.posts.sort('date', -1).limit(theme.sidebar_post_settings.latest_posts.post_count).each(function(post){ %>
+                <li>
+                    <a href="<%- url_for(post.path) %>" class="block hover:text-primary dark:text-slate-300 dark:hover:text-primary-dark transition-colors text-sm font-medium line-clamp-1 mb-1"><%= post.title %></a>
+                    <span class="text-xs text-slate-400 block"><%= date(post.date, 'YYYY-MM-DD') %></span>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+    <% } %>
+<% } %>

@@ -1,0 +1,50 @@
+<article class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-8 transition-colors duration-300">
+    <!-- Header Info -->
+    <header class="mb-8 border-b border-slate-100 dark:border-slate-700 pb-8">
+        <div class="flex gap-2 mb-4">
+            <% if (page.tags && page.tags.length){ %>
+                <% page.tags.forEach(function(tag){ %>
+                    <a href="<%- url_for(tag.path) %>" class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-medium rounded">#<%= tag.name %></a>
+                <% }) %>
+            <% } %>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4 leading-tight"><%= page.title %></h1>
+        <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-1">
+                <i class="far fa-calendar"></i>
+                <time><%= date(page.date, 'YYYY-MM-DD') %></time>
+            </div>
+            <div class="flex items-center gap-1">
+                <i class="fas fa-user"></i>
+                <span><%= config.author %></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content (Tailwind Typography) -->
+    <div id="post-content" class="prose prose-lg prose-slate dark:prose-invert max-w-none">
+        <%- page.content %>
+    </div>
+
+    <!-- Prev/Next -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 pt-8 border-t border-slate-100 dark:border-slate-700">
+        <% if (page.prev){ %>
+        <a href="<%- url_for(page.prev.path) %>" class="border border-slate-200 dark:border-slate-700 rounded-lg p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <div class="text-xs text-slate-400 mb-1">上一篇</div>
+            <div class="text-slate-700 dark:text-slate-200 font-medium truncate"><%= page.prev.title %></div>
+        </a>
+        <% } %>
+        
+        <% if (page.next){ %>
+        <a href="<%- url_for(page.next.path) %>" class="border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-right hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+            <div class="text-xs text-slate-400 mb-1">下一篇</div>
+            <div class="text-slate-700 dark:text-slate-200 font-medium truncate"><%= page.next.title %></div>
+        </a>
+        <% } %>
+    </div>
+
+    <!-- Comments -->
+    <div class="mt-12">
+        <%- partial('_partial/comments') %>
+    </div>
+</article>
