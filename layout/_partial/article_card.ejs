@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 hover:-translate-y-1 transition-transform cursor-pointer group">
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 hover:-translate-y-1 transition-transform group">
     <div class="w-full md:w-48 h-40 bg-slate-200 rounded-lg flex-shrink-0 bg-cover bg-center overflow-hidden">
         <!-- 檢查文章是否有封面圖，沒有則使用預設 -->
         <% var cover = post.cover || theme.default_cover || 'https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=300'; %>
@@ -6,7 +6,7 @@
     </div>
     <div class="flex flex-col justify-between flex-1 py-1">
         <div>
-            <h3 class="font-bold text-xl mb-2 dark:text-white group-hover:text-primary transition-colors">
+            <h3 class="font-bold text-xl mb-2 dark:text-white hover:text-primary transition-colors">
                 <a href="<%- url_for(post.path) %>"><%= post.title %></a>
             </h3>
             <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-2">
