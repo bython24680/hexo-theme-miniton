@@ -47,11 +47,13 @@
             </div>
         </div>
 
-        <div class="border-t border-slate-100 dark:border-slate-700 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400">
-            <p>&copy; <%= date(new Date(), 'YYYY') %> <%= config.title %>. Theme by <%= config.author %>.</p>
-            <div class="flex gap-4 mt-2 md:mt-0">
-                <a href="#" class="hover:text-slate-600 dark:hover:text-slate-200">Privacy</a>
-                <a href="#" class="hover:text-slate-600 dark:hover:text-slate-200">Terms</a>
+        <div class="border-t border-slate-100 dark:border-slate-700 pt-6 flex flex-col md:flex-row justify-start items-center text-xs text-slate-400">
+            <p>&copy; <%= date(new Date(), 'YYYY') %> <%= config.title %>. Theme by Bython.</p>
+            <div class="flex gap-1 mt-2 md:mt-0 ml-2">
+                Powered by
+                <a href="https://hexo.io" class="text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-600" target="_blank">Hexo</a>
+                & Theme
+                <a href="https://github.com/bython24680/hexo-theme-miniton" class="text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-600" target="_blank">Miniton</a>
             </div>
         </div>
     </div>
