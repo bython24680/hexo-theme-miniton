@@ -21,7 +21,10 @@
                 </a>
             <% } %>
             <% if(post.tags && post.tags.length){ %>
-                <span class="flex items-center gap-1"><i class="fas fa-hashtag"></i> <%= post.tags.data[0].name %></span>
+                <a href="<%- url_for(post.tags.data[0].path) %>" class="flex items-center gap-1 hover:text-primary">
+                    <i class="fas fa-hashtag"></i>
+                    <%= post.tags.data[0].name %>
+                </a>
             <% } %>
         </div>
     </div>
