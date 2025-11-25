@@ -51,6 +51,34 @@
   border-color: rgb(51, 65, 85)
 
 article
+  table
+    width: 100%
+    margin: 1.25rem 0
+
+    thead
+      tr
+        th
+          background-color: #475569
+          color: #ffffff
+          padding: 0.75rem 0
+
+          &:first-child
+            border-top-left-radius: 0.75rem
+          &:last-child
+            border-top-right-radius: 0.75rem
+
+    tbody
+      tr
+        &:nth-child(even)
+          background-color: #cbd5e1
+        &:last-child td:first-child
+          border-bottom-left-radius: 0.75rem
+        &:last-child td:last-child
+          border-bottom-right-radius: 0.75rem
+
+        td
+          padding: 0.75rem 0
+
   figure.highlight
     background-color: #1e2a3b
     color: #ededed
@@ -60,10 +88,11 @@ article
 
     table
       display: block
+      margin: 0
       overflow-x: scroll
 
       td.gutter
-        padding-right: 1.5rem
+        padding: 0 1.5rem 0
         color: #a0a0a0
 
 .dark article figure.highlight
