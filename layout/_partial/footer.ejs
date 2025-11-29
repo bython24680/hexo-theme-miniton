@@ -13,7 +13,7 @@
 
     var gridClass = 'md:grid-cols-3 lg:grid-cols-5';
     if (footerGridCols >= 1 && footerGridCols <= 5 ) {
-        gridClass = `md:grid-cols-${(footerGridCols - 2 > 0 ? footerGridCols - 2 : footerGridCols)} lg:grid-cols-${footerGridCols}`;
+        gridClass = `md:grid-cols-${(footerGridCols - 2 > 2 ? footerGridCols - 2 : footerGridCols)} lg:grid-cols-${footerGridCols}`;
     }
     %>
     <div class="max-w-7xl mx-auto px-4">
