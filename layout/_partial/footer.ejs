@@ -1,6 +1,23 @@
 <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto pt-12 pb-6">
+    <%
+    var hotCategories = theme.footer.hot_topics.enabled ? theme.footer.hot_topics.topics : [];
+    hotCategories = site.categories.filter(cat => hotCategories.includes(cat.name));
+    if (hotCategories.length === 0) {
+        hotCategories = site.categories.sort('length', -1).limit(5);
+    }
+
+    var footerGridCols = 2;
+    if (hotCategories.length > 0) footerGridCols++;
+    if (theme.footer.recommended_links.enabled && theme.footer.recommended_links.links.length > 0) footerGridCols++;
+    if (theme.footer.buy_coffee_link) footerGridCols++;
+
+    var gridClass = 'md:grid-cols-3 lg:grid-cols-5';
+    if (footerGridCols >= 1 && footerGridCols <= 5 ) {
+        gridClass = `md:grid-cols-${(footerGridCols - 2 > 0 ? footerGridCols - 2 : footerGridCols)} lg:grid-cols-${footerGridCols}`;
+    }
+    %>
     <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div class="grid grid-cols-1 <%= gridClass %> gap-8 mb-12">
             <!-- Col 1: About -->
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white flex items-center gap-2">
@@ -18,13 +35,6 @@
             </div>
 
             <!-- Col 2: Topics -->
-            <%
-            var hotCategories = theme.footer.hot_topics.enabled ? theme.footer.hot_topics.topics : [];
-            hotCategories = site.categories.filter(cat => hotCategories.includes(cat.name));
-            if (hotCategories.length === 0) {
-                hotCategories = site.categories.sort('length', -1).limit(5);
-            }
-            %>
             <% if (hotCategories.length > 0) { %>
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white">熱門主題</h3>
