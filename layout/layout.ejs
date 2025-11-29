@@ -67,5 +67,9 @@
            }
       });
   </script>
+  <!-- Disqus Comment Count Script -->
+  <% if (theme.disqus_shortname && page.layout === 'post') { %>
+  <script id="dsq-count-scr" src="//<%= theme.disqus_shortname %>.disqus.com/count.js" async></script>
+  <% } %>
 </body>
 </html>
