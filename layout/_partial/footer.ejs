@@ -18,14 +18,23 @@
             </div>
 
             <!-- Col 2: Topics -->
+            <%
+            var hotCategories = theme.footer.hot_topics.enabled ? theme.footer.hot_topics.topics : [];
+            hotCategories = site.categories.filter(cat => hotCategories.includes(cat.name));
+            if (hotCategories.length === 0) {
+                hotCategories = site.categories.sort('length', -1).limit(5);
+            }
+            %>
+            <% if (hotCategories.length > 0) { %>
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white">熱門主題</h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
-                    <% site.categories.sort('length', -1).limit(5).each(function(cat){ %>
+                    <% hotCategories.each(function(cat){ %>
                         <li><a href="<%- url_for(cat.path) %>" class="hover:text-primary"><%= cat.name %></a></li>
                     <% }) %>
                 </ul>
             </div>
+            <% } %>
 
             <!-- Col 3: Navigation -->
             <div>

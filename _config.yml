@@ -83,13 +83,20 @@ content_settings:
 
 # Footer Settings
 footer:
+  hot_topics:
+    enabled: true
+    title: "熱門主題"
+    topics:
+      - 前端開發
+      - 設計靈感
+      - 生產力工具
   description: "專注於分享網頁開發技術、設計靈感與數位生產力工具。"
   buy_coffee_link: "#"
   
 # Category Images (Map category names to images)
 categories_map:
   default: 
-    img: https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=300
+    img: "/images/category-cover-image.jpg"
     desc: 更多精彩內容
 
 # Comments (Disqus)

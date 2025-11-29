@@ -9,6 +9,9 @@
             <% 
             var catConfig = theme.categories_map[cat.name] || theme.categories_map['default'];
             var bgImg = catConfig ? catConfig.img : theme.categories_map['default'].img;
+            if (!(bgImg.startsWith('http') || bgImg.startsWith('https'))) {
+                bgImg = config.url + url_for(bgImg);
+            }
             var desc = catConfig ? catConfig.desc : cat.length + ' 篇文章';
             %>
             <a href="<%- url_for(cat.path) %>" class="group relative h-48 rounded-xl overflow-hidden shadow-md cursor-pointer block">
