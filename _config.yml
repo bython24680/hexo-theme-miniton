@@ -18,7 +18,8 @@ hero:
   enabled: true
   title: "探索科技與生活的交匯點"
   subtitle: "紀錄前端開發心得、設計靈感以及數位游牧的生活點滴。"
-  bg_image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop"
+  bg_image: "/images/hero-bg-image-1.jpg"
+  bg_image_color_type: "light" # light / dark
   btn_text: "探索主題"
   btn_link: "/topics"
 
