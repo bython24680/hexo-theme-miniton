@@ -91,7 +91,7 @@ footer:
       - 設計靈感
       - 生產力工具
   description: "專注於分享網頁開發技術、設計靈感與數位生產力工具。"
-  buy_coffee_link: "#"
+  buy_coffee_link: ""
   
 # Category Images (Map category names to images)
 categories_map:
