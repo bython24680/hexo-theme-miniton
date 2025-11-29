@@ -46,8 +46,20 @@
                 </ul>
             </div>
 
+            <!-- Col 4: Recommend links -->
+            <% if (theme.footer.recommended_links.enabled && theme.footer.recommended_links.links.length > 0) { %>
+            <div>
+                <h3 class="font-bold text-lg mb-4 dark:text-white">推薦連結</h3>
+                <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+                    <% for (var i in theme.footer.recommended_links.links){ %>
+                        <li><a href="<%= theme.footer.recommended_links.links[i].url %>" class="hover:text-primary" target="_blank" rel="noopener"><%= theme.footer.recommended_links.links[i].name %></a></li>
+                    <% } %>
+                </ul>
+            </div>
+            <% } %>
+
             <% if (theme.footer.buy_coffee_link) { %>
-            <!-- Col 4: Subscribe/Donate -->
+            <!-- Col 5: Subscribe/Donate -->
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white">支持創作</h3>
                 <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">如果內容對你有幫助，歡迎贊助！</p>

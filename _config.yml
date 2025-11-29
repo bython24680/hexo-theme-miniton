@@ -97,6 +97,14 @@ footer:
       - 前端開發
       - 設計靈感
       - 生產力工具
+  recommended_links:
+    enabled: true
+    title: "推薦連結"
+    links:
+      - name: "Hexo"
+        url: "https://hexo.io/"
+      - name: "Miniton 主題"
+        url: "https://github.com/bython24680/hexo-theme-miniton"
   description: "專注於分享網頁開發技術、設計靈感與數位生產力工具。"
   buy_coffee_link: ""
   
