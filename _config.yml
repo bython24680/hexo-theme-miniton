@@ -19,6 +19,13 @@ fav_icon: ""
 shortcut_icon: ""
 apple_touch_icon: ""
 
+# Reading Progress Bar
+reading_progress_bar:
+  enabled: true
+  height: 4px
+  dark_mode_color: "#a5b4fc" # Tailwind CSS Indigo-300
+  light_mode_color: "#6366f1" # Tailwind CSS Indigo-500
+
 # Hero Banner (Home Page)
 hero:
   enabled: true
