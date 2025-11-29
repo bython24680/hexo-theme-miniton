@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="<%= config.language %>" class="scroll-smooth">
+
+<%- partial('_partial/head') %>
+
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+  <%- partial('_partial/reading_progress_bar') %>
+  <%- partial('_partial/header') %>
+
+  <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+     <% 
+        // Categories, Tags & About pages are Full Width
+        var hideSidebar = (page.layout === 'categories' || page.layout === 'tags' || page.layout === 'about');
+     %>
+     
+     <!-- Main Content Area -->
+     <div class="<%= hideSidebar ? 'lg:col-span-12' : 'lg:col-span-8' %>">
+        <%- body %>
+     </div>
+    
+     <!-- Sidebar (Conditional) -->
+     <% if (!hideSidebar) { %>
+        <aside class="lg:col-span-4 space-y-6">
+          <%- partial('_partial/sidebar') %>
+        </aside>
+     <% } %>
+  </main>
+
+  <%- partial('_partial/footer') %>
+  <%- partial('_partial/search') %>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-primary dark:bg-primary-dark text-white w-12 h-12 rounded-full shadow-lg hover:bg-indigo-700 dark:hover:bg-indigo-500 transition-all z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300">
+      <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+      // Dark Mode
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          html.classList.add('dark');
+      } else {
+          html.classList.remove('dark');
+      }
+
+      themeToggleBtn?.addEventListener('click', () => {
+          html.classList.toggle('dark');
+          localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+      });
+
+      // Mobile Menu
+      function toggleMobileMenu() {
+          document.getElementById('mobile-menu').classList.toggle('hidden');
+      }
+
+      // Back to Top Logic
+      const backToTopBtn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+           if (window.scrollY > 300) {
+               backToTopBtn.classList.remove('opacity-0', 'invisible');
+               backToTopBtn.classList.add('opacity-100', 'visible');
+           } else {
+               backToTopBtn.classList.add('opacity-0', 'invisible');
+               backToTopBtn.classList.remove('opacity-100', 'visible');
+           }
+      });
+  </script>
+  <!-- Disqus Comment Count Script -->
+  <% if (theme.disqus_shortname && page.layout === 'post') { %>
+  <script id="dsq-count-scr" src="//<%= theme.disqus_shortname %>.disqus.com/count.js" async></script>
+  <% } %>
+</body>
+</html>

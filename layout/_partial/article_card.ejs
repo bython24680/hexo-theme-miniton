@@ -1,0 +1,38 @@
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 hover:-translate-y-1 transition-transform group">
+    <div class="w-full md:w-48 h-40 bg-slate-200 rounded-lg flex-shrink-0 bg-cover bg-center overflow-hidden">
+        <!-- 檢查文章是否有封面圖，沒有則使用預設 -->
+        <% var cover = post.cover_image || theme.default_article_cover_image; %>
+        <a href="<%- url_for(post.path) %>" class="block w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= cover %>');"></a>
+    </div>
+    <div class="flex flex-col justify-between flex-1 py-1">
+        <div>
+            <h3 class="font-bold text-xl mb-2 dark:text-white hover:text-primary dark:hover:text-indigo-400 transition-colors">
+                <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+            </h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-2">
+                <%= post.excerpt || strip_html(post.content).substring(0, 100) %>...
+            </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400 mt-4 md:mt-0">
+            <span class="flex items-center gap-1"><i class="far fa-calendar"></i> <%= date(post.date, 'YYYY-MM-DD') %></span>
+            <% if(post.categories && post.categories.length){ %>
+                <a href="<%- url_for(post.categories.data[0].path) %>" class="flex items-center gap-1 text-primary bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-900/50 px-2 py-0.5 rounded hover:bg-indigo-100 dark:hover:bg-indigo-900/80">
+                    <i class="fas fa-folder"></i> <%= post.categories.data[0].name %>
+                </a>
+            <% } %>
+            <% if(post.tags && post.tags.length){ %>
+                <div class="flex items-center gap-1">
+                    <i class="fas fa-hashtag"></i>
+                    <% post.tags.forEach(function(tag, index){ %>
+                        <a href="<%- url_for(tag.path) %>" class=" hover:text-primary dark:hover:text-indigo-400 transition-colors">
+                            <%= tag.name %>
+                        </a>
+                        <% if (index < post.tags.length - 1) { %>
+                            ,
+                        <% } %>
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>

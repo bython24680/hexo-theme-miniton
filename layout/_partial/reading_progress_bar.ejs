@@ -1,0 +1,33 @@
+<% if (theme.reading_progress_bar && theme.reading_progress_bar.enabled) { %>
+    <style>
+        #reading-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: <%= theme.reading_progress_bar.height || '4px' %>;
+            background-color: transparent;
+            z-index: 9999;
+        }
+        .reading-progress-bar__progress {
+            height: 100%;
+            width: 0;
+            background-color: <%= theme.reading_progress_bar.light_mode_color %>;
+            transition: width 0.25s ease-out;
+        }
+        .dark .reading-progress-bar__progress {
+            background-color: <%= theme.reading_progress_bar.dark_mode_color %>;
+        }
+    </style>
+    <div id="reading-progress-bar">
+        <div class="reading-progress-bar__progress"></div>
+    </div>
+    <script>
+        document.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.querySelector('.reading-progress-bar__progress').style.width = scrollPercent + '%';
+        });
+    </script>
+<% } %>

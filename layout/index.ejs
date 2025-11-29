@@ -1,0 +1,118 @@
+<!-- 區塊 0: Hero (v3 Style - Inside Grid) -->
+<% if (is_home() && page.current === 1 && theme.hero.enabled) { %>
+<%
+    heroBgImage = theme.hero.bg_image || '';
+    if (heroBgImage && !(heroBgImage.startsWith('http') || heroBgImage.startsWith('https'))) {
+        heroBgImage = url_for(heroBgImage);
+    }
+
+    heroCssClass = '';
+    heroSubtitleClass = '';
+    if (!heroBgImage) {
+        heroCssClass = 'bg-primary dark:bg-indigo-900 text-white';
+        heroSubtitleClass = 'text-indigo-100';
+    } else {
+        if (theme.hero.bg_image_color_type === 'dark') {
+            heroCssClass = 'text-white';
+            heroSubtitleClass = 'text-slate-200';
+        } else {
+            heroCssClass = 'text-slate-900';
+            heroSubtitleClass = 'text-slate-700';
+        }
+    }
+%>
+<div class="relative <%= heroCssClass %> rounded-2xl p-8 mb-10 shadow-lg flex flex-col md:flex-row items-center justify-between overflow-hidden transition-colors duration-300">
+    <div class="z-10 max-w-md">
+        <h1 class="text-3xl font-bold mb-4"><%= theme.hero.title %></h1>
+        <p class="mb-6 <%= heroSubtitleClass %>"><%= theme.hero.subtitle %></p>
+        <a href="<%- url_for(theme.hero.btn_link) %>" class="bg-white text-primary dark:text-indigo-900 px-6 py-2 rounded-lg font-medium hover:bg-slate-100 transition-colors inline-block">
+            <%= theme.hero.btn_text %> <i class="fas fa-arrow-right ml-1"></i>
+        </a>
+    </div>
+    <% if(heroBgImage) { %>
+        <img src="<%= heroBgImage %>" alt="Hero Image" class="absolute top-0 left-0 w-full h-full object-cover">
+    <% } %>
+</div>
+<% } %>
+
+<!-- 區塊 1: 精選文章 (Featured) -->
+<% 
+    // Logic: Find posts with 'featured' tag
+    var featuredPosts = site.posts.filter(p => p.tags && p.tags.findOne({name: 'featured'})).sort('date', -1).limit(5);
+%>
+<% if (featuredPosts.length > 0) { %>
+    <div class="mb-12">
+        <h2 class="text-xl font-bold mb-6 border-l-4 border-yellow-400 pl-3 dark:text-white flex items-center gap-2">
+            <i class="fas fa-star text-yellow-400"></i> 精選文章
+        </h2> 
+        <!-- First Big Post -->
+        <% if (featuredPosts.length > 0) { var first = featuredPosts.data[0]; %>
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm overflow-hidden mb-6 group cursor-pointer relative">
+            <a href="<%- url_for(first.path) %>" class="block h-72 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('<%= first.cover_image || theme.default_article_cover_image %>');"></a>
+            <div class="p-6">
+                <div class="flex gap-2 mb-3">
+                    <% if(first.categories.length) { %>
+                    <span class="bg-indigo-100 dark:bg-indigo-900/50 text-primary dark:text-indigo-300 text-xs font-bold px-2 py-1 rounded"><%= first.categories.data[0].name %></span>
+                    <% } %>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-primary dark:text-white transition-colors">
+                    <a href="<%- url_for(first.path) %>"><%= first.title %></a>
+                </h3>
+                <p class="text-slate-500 dark:text-slate-400 line-clamp-2"><%= strip_html(first.excerpt || first.content).substring(0, 120) %></p>
+            </div>
+        </div>
+        <% } %>
+
+        <!-- Small Grid (Next 4) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <% featuredPosts.slice(1).each(function(post){ %>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 hover:shadow-md transition-all cursor-pointer group">
+                <% if(post.categories.length){ %>
+                    <span class="text-xs text-primary font-bold tracking-wider uppercase"><%= post.categories.data[0].name %></span>
+                <% } %>
+                <h4 class="font-bold text-lg mt-1 mb-2 group-hover:text-primary dark:text-white">
+                    <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+                </h4>
+                <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2"><%= strip_html(post.excerpt || post.content).substring(0, 80) %>...</p>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+<% } %>
+
+<!-- 區塊 2: 最新文章列表 -->
+<div class="mb-12">
+    <div class="flex justify-between items-end mb-6">
+        <h2 class="text-2xl font-bold border-l-4 border-primary dark:border-primary-dark pl-3 dark:text-white">
+            <i class="fas fa-clock text-blue-400"></i> 最新文章
+        </h2>
+        <a href="<%- url_for('/archives') %>" class="text-sm text-primary dark:text-indigo-400 font-medium hover:underline">查看更多 <i class="fas fa-arrow-right ml-1"></i></a>
+    </div>
+    <div class="space-y-6">
+        <% page.posts.limit(5).each(function(post){ %>
+            <%- partial('_partial/article_card', {post: post}) %>
+        <% }) %>
+    </div>
+</div>
+
+<!-- 區塊 3: 熱門主題 (Preview) -->
+<% if (site.categories.length > 0) { %>
+    <div>
+        <h2 class="text-2xl font-bold mb-6 border-l-4 border-purple-400 pl-3 dark:text-white flex items-center gap-2">
+        <i class="fas fa-shapes text-purple-400"></i> 熱門主題
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <% site.categories.limit(4).each(function(cat){ 
+                var catConfig = theme.categories_map[cat.name] || theme.categories_map['default'];
+                var bgImg = catConfig ? catConfig.img : '';
+        %>
+        <a href="<%- url_for(cat.path) %>" class="group relative h-32 rounded-xl overflow-hidden shadow-sm block">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= bgImg %>');"></div>
+                <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/40 transition-colors">
+                    <h3 class="text-white font-bold text-lg tracking-wide"><%= cat.name %></h3>
+                </div>
+        </a>
+        <% }) %>
+    </div>
+    </div>
+<% } %>

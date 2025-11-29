@@ -1,0 +1,85 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%
+    meta_title = page.title ? page.title + ' | ' + config.title : config.title
+    meta_description = page.description || config.description;
+    meta_image = page.cover_image || theme.default_social_image || '';
+
+    if (page.layout === 'post') {
+      meta_description = page.excerpt || strip_html(page.content).substring(0, 150) + '...';
+    }
+    if (meta_image && (!meta_image.startsWith('http') || !meta_image.startsWith('https'))) {
+      meta_image = config.url + url_for(meta_image);
+    }
+  %>
+  <title><%= meta_title %></title>
+  <meta name="description" content="<%= meta_description %>">
+
+  <!-- social media: fb -->
+  <meta property="type" content="<%= page.layout === 'post' ? 'article' : 'website' %>">
+  <meta property="og:title" content="<%= meta_title %>">
+  <meta property="og:description" content="<%= meta_description %>">
+  <meta property="og:url" content="<%= config.url + url_for(page.path) %>">
+  <meta property="og:site_name" content="<%= config.title %>">
+  <meta property="og:locale" content="<%= config.language.replace('-', '_') %>">
+  <meta property="og:image" content="<%= meta_image %>">
+
+  <meta property="article:author" content="<%= config.author %>">
+  <% if (page.layout === 'post') { %>
+    <meta property="article:published_time" content="<%= date(page.date, 'YYYY-MM-DDTHH:mm:ssZ') %>">
+    <meta property="article:modified_time" content="<%= date(page.updated || page.date, 'YYYY-MM-DDTHH:mm:ssZ') %>">
+    <% if (page.categories && page.categories.length) { %>
+      <meta property="article:section" content="<%= page.categories.data[0].name %>">
+    <% } %>
+    <% if (page.tags && page.tags.length) { %>
+      <% page.tags.forEach(function(tag){ %>
+        <meta property="article:tag" content="<%= tag.name %>">
+      <% }); %>
+    <% } %>
+  <% } %>
+
+  <!-- social media: twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="<%= meta_title %>">
+  <meta name="twitter:description" content="<%= meta_description %>">
+  <meta name="twitter:image" content="<%= meta_image %>">
+  <% if (theme.twitter_username) { %>
+    <meta name="twitter:site" content="@<%= theme.twitter_username %>">
+    <meta name="twitter:creator" content="@<%= theme.twitter_username %>">
+  <% } %>
+
+  <!-- Favicon -->
+  <% if (theme.fav_icon) { %>
+    <link rel="icon" href="<%= url_for(theme.fav_icon) %>" type="image/x-icon">
+  <% } %>
+  <% if (theme.shortcut_icon) { %>
+    <link rel="shortcut icon" href="<%= url_for(theme.shortcut_icon) %>" type="image/x-icon">
+  <% } %>
+  <% if (theme.apple_touch_icon) { %>
+    <link rel="apple-touch-icon" href="<%= url_for(theme.apple_touch_icon) %>">
+  <% } %>
+
+  <!-- Assets -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<%= url_for('css/final.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/style.css') %>">
+
+  <!-- Google Analytics -->
+  <% if (theme.google_analytics){ %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= theme.google_analytics %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '<%= theme.google_analytics %>');
+  </script>
+  <% } %>
+  
+  <script>
+    // Pass Hexo config to JS
+    var hexo_config = {
+        root: '<%= config.root %>'
+    };
+  </script>
+</head>
