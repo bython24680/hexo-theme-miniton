@@ -8,13 +8,13 @@
         </div>
         <!-- Pagination -->
         <% if (page.total > 1){ %>
-        <div class="flex justify-center mt-12 gap-2">
+        <div class="flex justify-center items-center mt-12 gap-2">
             <%- paginator({
                 prev_text: '<i class="fas fa-chevron-left"></i>',
                 next_text: '<i class="fas fa-chevron-right"></i>',
                 escape: false,
                 class: 'flex gap-2',
-                page_class: 'w-10 h-10 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 shadow-sm transition-colors',
+                page_class: 'w-10 h-10 flex items-center justify-center rounded-lg bg-white dark:bg-slate-700 hover:bg-indigo-400 dark:hover:bg-indigo-900 text-slate-600 dark:text-slate-300 hover:text-white shadow-sm transition-colors',
                 current_class: '!bg-primary text-white hover:bg-indigo-700 dark:bg-primary-dark'
             }) %>
         </div>
