@@ -1,27 +1,27 @@
 <!-- 區塊 0: Hero (v3 Style - Inside Grid) -->
+<% if (is_home() && page.current === 1 && theme.hero.enabled) { %>
 <%
-    if (is_home() && page.current === 1 && theme.hero.enabled) {
-        heroBgImage = theme.hero.bg_image || '';
-        if (heroBgImage && !(heroBgImage.startsWith('http') || heroBgImage.startsWith('https'))) {
-            heroBgImage = config.url + url_for(heroBgImage);
-        }
+    heroBgImage = theme.hero.bg_image || '';
+    if (heroBgImage && !(heroBgImage.startsWith('http') || heroBgImage.startsWith('https'))) {
+        heroBgImage = config.url + url_for(heroBgImage);
+    }
 
-        heroCssClass = '';
-        heroSubtitleClass = '';
-        if (!heroBgImage) {
-            heroCssClass = 'bg-primary dark:bg-indigo-900 text-white';
-            heroSubtitleClass = 'text-indigo-100';
+    heroCssClass = '';
+    heroSubtitleClass = '';
+    if (!heroBgImage) {
+        heroCssClass = 'bg-primary dark:bg-indigo-900 text-white';
+        heroSubtitleClass = 'text-indigo-100';
+    } else {
+        if (theme.hero.bg_image_color_type === 'dark') {
+            heroCssClass = 'text-white';
+            heroSubtitleClass = 'text-slate-200';
         } else {
-            if (theme.hero.bg_image_color_type === 'dark') {
-                heroCssClass = 'text-white';
-                heroSubtitleClass = 'text-slate-200';
-            } else {
-                heroCssClass = 'text-slate-900';
-                heroSubtitleClass = 'text-slate-700';
-            }
+            heroCssClass = 'text-slate-900';
+            heroSubtitleClass = 'text-slate-700';
         }
+    }
 %>
-<div class="relative <%= heroCssClass %> rounded-2xl p-8 mb-10 shadow-lg flex flex-col md:flex-row items-center justify-between overflow-hidden relative transition-colors duration-300">
+<div class="relative <%= heroCssClass %> rounded-2xl p-8 mb-10 shadow-lg flex flex-col md:flex-row items-center justify-between overflow-hidden transition-colors duration-300">
     <div class="z-10 max-w-md">
         <h1 class="text-3xl font-bold mb-4"><%= theme.hero.title %></h1>
         <p class="mb-6 <%= heroSubtitleClass %>"><%= theme.hero.subtitle %></p>
