@@ -67,10 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
                              // 簡單處理，實際情況視 search.xml 生成方式而定
                         }
 
-                        html += `<li>
-                            <a href="${itemUrl}" class="block p-3 rounded hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
-                                <div class="font-bold text-slate-800 dark:text-slate-200 text-base mb-1">${item.title}</div>
-                                <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">${item.content.replace(/<[^>]+>/g,"").substring(0, 80)}...</p>
+                        html += `<li class="search-result-item">
+                            <a href="${itemUrl}">
+                                <div class="search-result-item__title">${item.title}</div>
+                                <p class="search-result-item__content">${item.content.replace(/<[^>]+>/g,"").substring(0, 80)}...</p>
                             </a>
                         </li>`;
                     });

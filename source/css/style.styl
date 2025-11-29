@@ -35,6 +35,34 @@
   color: white
   font-weight: bold
 
+#local-search-result
+  ul
+    li.search-result-item
+      padding: 0.25rem 0
+
+      &:hover
+        .search-result-item__title
+          text-decoration: underline
+
+      .search-result-item__title
+        color: #1e293b
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+
+      .search-result-item__content
+        color: #64748b;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        overflow: hidden;
+.dark
+  #local-search-result
+    ul
+      li.search-result-item
+        .search-result-item__title
+          color: #e2e8f0
+        .search-result-item__content
+          color: #94a3b8
+
 #post-content
   h2
     font-size: 1.66em;
