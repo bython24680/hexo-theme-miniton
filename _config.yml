@@ -12,6 +12,12 @@ author_title: 全端開發者
 author_bio: 嗨！我是作者。
 start_date: 2023-01-01 # 用於計算建站天數
 default_article_cover_image: "/images/cover-image-coffee-1.jpg"
+default_social_image: "/images/cover-image-coffee-2.jpg"
+
+# Favicon
+fav_icon: ""
+shortcut_icon: ""
+apple_touch_icon: ""
 
 # Hero Banner (Home Page)
 hero:
