@@ -11,6 +11,7 @@ avatar: https://ui-avatars.com/api/?name=Default&background=random&size=128
 author_title: 全端開發者
 author_bio: 嗨！我是作者。
 start_date: 2023-01-01 # 用於計算建站天數
+default_article_cover_image: "/images/cover-image-coffee-1.jpg"
 
 # Hero Banner (Home Page)
 hero:

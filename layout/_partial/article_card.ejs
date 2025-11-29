@@ -1,7 +1,7 @@
 <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 hover:-translate-y-1 transition-transform group">
     <div class="w-full md:w-48 h-40 bg-slate-200 rounded-lg flex-shrink-0 bg-cover bg-center overflow-hidden">
         <!-- 檢查文章是否有封面圖，沒有則使用預設 -->
-        <% var cover = post.cover || theme.default_cover || 'https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=300'; %>
+        <% var cover = post.cover_image || theme.default_article_cover_image; %>
         <a href="<%- url_for(post.path) %>" class="block w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= cover %>');"></a>
     </div>
     <div class="flex flex-col justify-between flex-1 py-1">

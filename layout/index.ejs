@@ -27,7 +27,7 @@
         <!-- First Big Post -->
         <% if (featuredPosts.length > 0) { var first = featuredPosts.data[0]; %>
         <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm overflow-hidden mb-6 group cursor-pointer relative">
-            <a href="<%- url_for(first.path) %>" class="block h-72 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('<%= first.cover || theme.default_cover || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" %>');"></a>
+            <a href="<%- url_for(first.path) %>" class="block h-72 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('<%= first.cover_image || theme.default_article_cover_image %>');"></a>
             <div class="p-6">
                 <div class="flex gap-2 mb-3">
                     <% if(first.categories.length) { %>
