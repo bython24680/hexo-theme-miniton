@@ -3,7 +3,7 @@
 <%
     heroBgImage = theme.hero.bg_image || '';
     if (heroBgImage && !(heroBgImage.startsWith('http') || heroBgImage.startsWith('https'))) {
-        heroBgImage = config.url + url_for(heroBgImage);
+        heroBgImage = url_for(heroBgImage);
     }
 
     heroCssClass = '';
