@@ -1,3 +1,40 @@
+::-webkit-scrollbar
+  width: 6px
+::-webkit-scrollbar-track
+  background: transparent
+::-webkit-scrollbar-thumb
+  background: #cbd5e1; border-radius: 3px
+.dark ::-webkit-scrollbar-thumb
+  background: #475569
+.nav-link
+  position: relative
+.nav-link::after
+  content: ''
+  position: absolute
+  width: 0
+  height: 2px
+  bottom: -4px
+  left: 0
+  background-color: #4F46E5
+  transition: width 0.3s
+.dark .nav-link::after
+  background-color: #818CF8
+.nav-link:hover::after, .nav-link.active::after
+  width: 100%
+.calendar-grid
+  display: grid
+  grid-template-columns: repeat(7, 1fr)
+  gap: 4px
+  text-align: center
+  font-size: 0.8rem
+.calendar-day
+  padding: 4px
+  border-radius: 4px
+.calendar-day.today
+  background-color: #4F46E5
+  color: white
+  font-weight: bold
+
 #post-content
   h2
     font-size: 1.66em;

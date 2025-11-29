@@ -1,0 +1,26 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= page.title ? page.title + ' | ' + config.title : config.title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<%= url_for('css/final.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/style.css') %>">
+
+  <!-- Google Analytics -->
+  <% if (theme.google_analytics){ %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= theme.google_analytics %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '<%= theme.google_analytics %>');
+  </script>
+  <% } %>
+  
+  <script>
+    // Pass Hexo config to JS
+    var hexo_config = {
+        root: '<%= config.root %>'
+    };
+  </script>
+</head>
