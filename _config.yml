@@ -4,6 +4,7 @@ menu:
   Articles: /archives
   Topics: /topics
   Tags: /tags
+  Projects: /projects
   About: /about
 
 # Site Info
@@ -86,6 +87,10 @@ content_settings:
   tags:
     page_title: "標籤雲"
     item_name: "標籤"
+  projects:
+    page_title: "專案展示"
+    page_description: "這裡展示了我參與開發的開源專案、Side Projects 以及實驗性作品。"
+    no_project_text: "目前沒有專案或作品可供瀏覽。"
 
 
 # Footer Settings
@@ -113,6 +118,17 @@ categories_map:
   default: 
     img: "/images/category-cover-image.jpg"
     desc: 更多精彩內容
+
+# Projects
+projects_list:
+  - title: "專案一"
+    description: "這是專案一的簡短描述。"
+    image: "/images/cover-image-coffee-2.jpg"
+    links:
+      demo: "#"
+      repo: "#"
+      detail: "#"
+    tags: ["前端", "開源"]
 
 # Comments (Disqus)
 # 註冊 Disqus 獲取 shortname: https://disqus.com/admin/create/
