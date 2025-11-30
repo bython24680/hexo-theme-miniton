@@ -1,0 +1,51 @@
+<style>
+    /* Generic Window Mockup (More versatile than just a browser) */
+    .window-mockup {
+        border-radius: 0.75rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        background-color: #fff;
+        transition: transform 0.3s ease;
+    }
+    .dark .window-mockup { background-color: #1e293b; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
+    .window-header {
+        background-color: #f1f5f9;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .dark .window-header { background-color: #0f172a; border-bottom: 1px solid #334155; }
+    .window-dot { width: 0.75rem; height: 0.75rem; border-radius: 50%; }
+    .window-title { flex: 1; text-align: center; font-size: 0.75rem; color: #64748b; font-family: monospace; }
+    .dark .window-title { color: #94a3b8; }
+</style>
+<!-- Project preview / Screenshot (Generic Window Style) -->
+<div class="max-w-6xl mx-auto px-4 -mt-20 relative z-20">
+    <div class="window-mockup border border-slate-200 dark:border-slate-700">
+        <div class="window-header">
+            <div class="window-dot bg-red-400"></div>
+            <div class="window-dot bg-yellow-400"></div>
+            <div class="window-dot bg-green-400"></div>
+            <!-- Optional: Window Title / URL Bar -->
+            <div class="window-title">
+                project-preview
+            </div>
+        </div>
+        <!-- Content Container: 適合放網頁截圖、遊戲畫面、架構圖 -->
+        <div class="aspect-video bg-slate-100 dark:bg-slate-800 relative group overflow-hidden flex items-center justify-center">
+            <!-- Placeholder Image (Use 'object-contain' for diagrams, 'object-cover' for UI) -->
+            <%
+            var previewImage = page.project_preview_image;
+            if (!(previewImage.startsWith('http://') || previewImage.startsWith('https://'))) {
+                previewImage = url_for(previewImage);
+            }
+            %>
+            <img src="<%= previewImage %>" alt="Project Preview" class="w-full h-full object-cover">
+
+            <!-- Overlay (Optional) -->
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors pointer-events-none"></div>
+        </div>
+    </div>
+</div>
