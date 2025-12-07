@@ -39,7 +39,7 @@
             <!-- Col 2: Topics -->
             <% if (hotCategories.length > 0) { %>
             <div>
-                <h3 class="font-bold text-lg mb-4 dark:text-white">熱門主題</h3>
+                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= theme.footer.hot_topics.title %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% hotCategories.each(function(cat){ %>
                         <li><a href="<%- url_for(cat.path) %>" class="hover:text-primary"><%= cat.name %></a></li>
