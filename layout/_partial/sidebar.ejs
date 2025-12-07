@@ -45,7 +45,12 @@
                 <ul class="space-y-4">
                     <% site.posts.sort('date', -1).limit(theme.sidebar_settings.latest_posts.post_count).each(function(post){ %>
                     <li>
-                        <a href="<%- url_for(post.path) %>" class="block hover:text-primary dark:text-slate-300 dark:hover:text-primary-dark transition-colors text-sm font-medium line-clamp-1 mb-1"><%= post.title %></a>
+                        <a href="<%- url_for(post.path) %>" class="block hover:text-primary dark:text-slate-300 dark:hover:text-primary-dark transition-colors text-sm font-medium line-clamp-1 mb-1">
+                            <% if (post.layout === 'project') { %>
+                                <span class="inline-block border border-solid border-indigo-600 text-indigo-600 dark:border-indigo-300 dark:text-indigo-300 text-[0.7rem] font-semibold px-1 rounded mr-1">PROJECT</span>
+                            <% } %>
+                            <%= post.title %>
+                        </a>
                         <span class="text-xs text-slate-400 block"><%= date(post.date, 'YYYY-MM-DD') %></span>
                     </li>
                     <% }) %>
