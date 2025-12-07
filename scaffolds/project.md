@@ -3,7 +3,6 @@ layout: project
 permalink: projects/demo-project/
 title: {{ title }}
 date: {{ date }}
-tags:
 
 project_bg_color:
 - bg-primary
