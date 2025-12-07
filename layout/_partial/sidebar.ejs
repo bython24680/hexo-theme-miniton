@@ -114,14 +114,18 @@
                     <div class="text-slate-400 font-medium pb-2">S</div>
                     <% for(var i=0; i<firstDay; i++) { %><div></div><% } %>
                     <% for(var d=1; d<=daysInMonth; d++) { %>
-                        <div class="<%= d === today ? 'today py-1 rounded bg-primary text-white' : 'py-1' %>">
+                        <%
+                        var hasPost = postsThisMonth.some(function(post){
+                            var postDate = new Date(post.date);
+                            return postDate.getDate() === d;
+                        });
+                        var cssPadding = 'pt-1 pb-3.5';
+                        if (hasPost) {
+                            cssPadding = 'py-1';
+                        }
+                        %>
+                        <div class="<%= d === today ? 'today ' + cssPadding + ' rounded bg-primary text-white' : cssPadding %>">
                             <%= d %>
-                            <%
-                            var hasPost = postsThisMonth.some(function(post){
-                                var postDate = new Date(post.date);
-                                return postDate.getDate() === d;
-                            });
-                            %>
                             <% if(hasPost) { %>
                                 <div class="w-1.5 h-1.5 bg-indigo-400 dark:bg-indigo-300 rounded-full mx-auto mt-1"></div>
                             <% } %>
