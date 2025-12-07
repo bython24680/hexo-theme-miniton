@@ -103,6 +103,9 @@ footer:
       - 前端開發
       - 設計靈感
       - 生產力工具
+  featured_projects:
+    enabled: true
+    title: "推薦專案"
   recommended_links:
     enabled: true
     title: "推薦連結"
@@ -124,7 +127,9 @@ categories_map:
 projects_list:
   - title: "專案一"
     description: "這是專案一的簡短描述。"
+    permalink: "projects/demo-project/"
     image: "/images/cover-image-coffee-2.jpg"
+    featured: true
     links:
       demo: "#"
       repo: "#"

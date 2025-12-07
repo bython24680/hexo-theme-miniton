@@ -114,5 +114,29 @@
         </a>
         <% }) %>
     </div>
+<% } %>
+<%
+var featuredProjects = theme.projects_list.filter(p => p.featured);
+%>
+<% if (featuredProjects.length > 0) { %>
+    <div>
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-2xl font-bold border-l-4 border-orange-400 pl-3 dark:text-white">
+                <i class="fas fa-icons text-orange-400"></i> <%= theme.footer.featured_projects.title %>
+            </h2>
+            <a href="<%- url_for('/projects') %>" class="text-sm text-primary dark:text-indigo-400 font-medium hover:underline">查看更多 <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <% featuredProjects.forEach(function(project) { %>
+                <% if (project.featured) { %>
+                    <a href="<%- url_for(project.permalink) %>" class="group relative h-32 rounded-xl overflow-hidden shadow-sm block">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= project.image %>');"></div>
+                        <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/40 transition-colors">
+                            <h3 class="text-white font-bold text-lg tracking-wide"><%= project.title %></h3>
+                        </div>
+                    </a>
+                <% } %>
+            <% }) %>
+        </div>
     </div>
 <% } %>
