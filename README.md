@@ -8,6 +8,7 @@ A responsive, flat-design and lightweight [Hexo](http://hexo.io/) theme.
 - [Features](#features)
 - [Dependencies](#dependencies)
 - [Prerequisites](#prerequisites)
+- [Scaffolds](#scaffolds)
 - [Installation](#installation)
 - [How to use](#how-to-use)
 - [Configuration](#configuration)
@@ -62,6 +63,10 @@ Then navigate into the new directory.
 $ cd ./demo-blog
 ```
 
+## Scaffolds
+
+Copy the files under `scaffolds/` into the `scaffolds/` directory of your Hexo blog.
+
 ## Installation
 
 1. Clone this theme into the `theme/` directory of your blog.
@@ -98,6 +103,7 @@ Supported layouts:
 - category
 - page
 - post
+- project
 - tags
 
 2. Build the blog and generate files.
@@ -256,6 +262,9 @@ footer:
       - 前端開發
       - 設計靈感
       - 生產力工具
+  featured_projects:
+    enabled: true
+    title: "推薦專案"
   recommended_links:
     enabled: true
     title: "推薦連結"
@@ -278,6 +287,26 @@ categories_map:
   default:
     img: Image link (same rule as site cover image)
     desc: Description of the category
+```
+
+### Projects
+
+The permalink has to same as the one in project markdown file, and the image has to same as project_preview_image in project markdown file.
+
+The `links.detail` must match the `permalink` defined in the project’s markdown file, and the `image` must match the `project_preview_image` value in that markdown file.
+
+Featured projects will be displayed on the homepage and in the footer.
+
+```yml
+projects_list:
+  - title: "專案一"
+    description: "這是專案一的簡短描述。"
+    image: "/images/cover-image-coffee-2.jpg"
+    featured: true
+    links:
+      demo: "#"
+      repo: "#"
+      detail: "projects/demo-project/"
 ```
 
 ### Others
