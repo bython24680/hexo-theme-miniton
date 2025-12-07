@@ -132,7 +132,7 @@ var featuredProjects = theme.projects_list.filter(p => p.featured);
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <% featuredProjects.forEach(function(project) { %>
                 <% if (project.featured) { %>
-                    <a href="<%- url_for(project.permalink) %>" class="group relative h-32 rounded-xl overflow-hidden shadow-sm block">
+                    <a href="<%- url_for(project.links.detail) %>" class="group relative h-32 rounded-xl overflow-hidden shadow-sm block">
                         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= project.image %>');"></div>
                         <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/40 transition-colors">
                             <h3 class="text-white font-bold text-lg tracking-wide"><%= project.title %></h3>

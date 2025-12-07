@@ -45,7 +45,7 @@
                     <% } %>
 
                     <% if (project.links.detail) { %>
-                    <a href="<%= project.links.detail %>" class="ml-auto text-slate-400 hover:text-primary dark:hover:text-white transition-colors">
+                    <a href="<%- url_for(project.links.detail) %>" class="ml-auto text-slate-400 hover:text-primary dark:hover:text-white transition-colors">
                         <i class="fas fa-arrow-right"></i>
                     </a>
                     <% } %>

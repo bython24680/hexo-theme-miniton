@@ -127,13 +127,12 @@ categories_map:
 projects_list:
   - title: "專案一"
     description: "這是專案一的簡短描述。"
-    permalink: "projects/demo-project/"
     image: "/images/cover-image-coffee-2.jpg"
     featured: true
     links:
       demo: "#"
       repo: "#"
-      detail: "#"
+      detail: "projects/demo-project/"
     tags: ["前端", "開源"]
 
 # Comments (Disqus)
