@@ -5,7 +5,7 @@
     if (hotCategories.length === 0) {
         hotCategories = site.categories.sort('length', -1).limit(5);
     }
-    var featuredProjects = theme.projects_list.filter(p => p.featured);
+    var featuredProjects = theme.footer.featured_projects.enabled ? theme.projects_list.filter(p => p.featured) : [];
 
     var footerGridCols = 2;
     if (hotCategories.length > 0) footerGridCols++;
