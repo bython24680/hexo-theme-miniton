@@ -1,0 +1,117 @@
+<!-- PROJECT HERO SECTION -->
+<section class="relative bg-gradient-to-b from-white to-slate-100 dark:from-slate-800 dark:to-slate-900 pt-20 pb-32 px-4 overflow-hidden">
+    <!-- 背景裝飾 -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none opacity-30 dark:opacity-10">
+        <div class="absolute top-10 right-10 w-72 h-72 <%- page.project_bg_color[0] %> rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-10 left-10 w-72 h-72 <%- page.project_bg_color[1] %> rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+        <!-- 返回連結 -->
+        <a href="<%- url_for('projects') %>" class="inline-flex items-center text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white mb-8 transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i> 返回專案列表
+        </a>
+
+        <!-- 專案類型標籤 (Project Type Badge) -->
+        <div class="mb-4">
+            <span class="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-primary dark:text-indigo-300 text-xs font-bold rounded-full tracking-wide uppercase">
+                <%- page.project_tag %>
+            </span>
+        </div>
+
+        <!-- 專案標題 -->
+        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
+            <%- page.project_title %>
+        </h1>
+
+        <!-- 長文描述 (Subtitle) -->
+        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+            <%- page.project_subtitle %>
+        </p>
+
+        <!-- 作者列表 -->
+        <div class="flex items-center justify-center gap-2 mb-10">
+            <span class="text-sm text-slate-500 dark:text-slate-400 mr-2">Created by</span>
+            <div class="flex -space-x-2">
+                <% page.project_authors.forEach(function (author) { %>
+                <img class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://ui-avatars.com/api/?name=<%= author %>&background=random&color=fff" alt="<%= author %>" title="<%= author %>">
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-4">
+            <% if (page.project_demo_url) { %>
+            <!-- Button: Primary Action (Demo/App/Game) -->
+            <a href="<%= page.project_demo_url %>" class="px-8 py-3.5 bg-primary hover:bg-indigo-700 text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                <i class="fas fa-play"></i> <!-- Play icon for games/demos -->
+                Live Demo
+            </a>
+            <% } %>
+
+            <% if (page.project_repo_url) { %>
+            <!-- Button: Source Code / Repo -->
+            <a href="<%= page.project_repo_url %>" class="px-8 py-3.5 bg-white dark:bg-slate-700 text-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                <i class="fab fa-github"></i>
+                View Code
+            </a>
+            <% } %>
+
+            <% if (page.project_docs_url) { %>
+            <!-- Button: Documentation / Download (Secondary) -->
+            <a href="<%= page.project_docs_url %>" class="px-8 py-3.5 text-slate-600 dark:text-slate-300 font-medium hover:-translate-y-0.5 transition-colors flex items-center gap-2">
+                <i class="fas fa-book"></i>
+                Documentation
+            </a>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<% if (page.project_preview_window && page.project_preview_image) { %>
+<%- partial('_partial/project_preview_window') %>
+<% } %>
+
+<!-- MAIN CONTENT (Markdown Area) -->
+<section class="max-w-6xl mx-auto px-4 py-16">
+    <%- page.content %>
+
+    <!-- Share Buttons (From v11) -->
+    <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
+        <div class="flex flex-col sm:flex-row items-center gap-4 justify-between bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl">
+            <span class="text-slate-600 dark:text-slate-300 font-bold">覺得這個專案很酷？分享給朋友！</span>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href), '_blank')" 
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-blue-400 transition-colors">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-blue-600 transition-colors">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button onclick="window.open('https://www.threads.net/intent/post?text=' + encodeURIComponent(document.title + ' ' + window.location.href), '_blank')"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-primary transition-colors">
+                    <i class="fas fa-at"></i>
+                </button>
+                <button onclick="window.open('http://www.plurk.com/?qualifier=shares&status=' + encodeURIComponent(window.location.href) + ' ' + encodeURIComponent('(' + document.title + ')'), '_blank')"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-[#CF682F] dark:hover:text-[#CF682F] transition-colors">
+                    <i class="font-bold text-xs">P</i>
+                </button>
+                <button onclick="copyLink()" title="複製連結 (適用於 Instagram)"
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-primary transition-colors group relative">
+                    <i class="fas fa-link"></i>
+                    <span id="copy-tooltip" class="absolute bottom-full mb-2 px-2 py-1 text-xs bg-black text-white rounded opacity-0 transition-opacity pointer-events-none whitespace-nowrap">已複製!</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const tooltip = document.getElementById('copy-tooltip');
+                tooltip.classList.remove('opacity-0');
+                setTimeout(() => tooltip.classList.add('opacity-0'), 2000);
+            });
+        }
+    </script>
+</section>

@@ -4,6 +4,7 @@ menu:
   Articles: /archives
   Topics: /topics
   Tags: /tags
+  Projects: /projects
   About: /about
 
 # Site Info
@@ -12,6 +13,7 @@ author_title: 全端開發者
 author_bio: 嗨！我是作者。
 start_date: 2023-01-01 # 用於計算建站天數
 default_article_cover_image: "/images/cover-image-coffee-1.jpg"
+default_project_cover_image: "/images/cover-image-coffee-2.jpg"
 default_social_image: "/images/cover-image-coffee-2.jpg"
 
 # Favicon
@@ -86,6 +88,10 @@ content_settings:
   tags:
     page_title: "標籤雲"
     item_name: "標籤"
+  projects:
+    page_title: "專案展示"
+    page_description: "這裡展示了我參與開發的開源專案、Side Projects 以及實驗性作品。"
+    no_project_text: "目前沒有專案或作品可供瀏覽。"
 
 
 # Footer Settings
@@ -97,6 +103,9 @@ footer:
       - 前端開發
       - 設計靈感
       - 生產力工具
+  featured_projects:
+    enabled: true
+    title: "推薦專案"
   recommended_links:
     enabled: true
     title: "推薦連結"
@@ -113,6 +122,18 @@ categories_map:
   default: 
     img: "/images/category-cover-image.jpg"
     desc: 更多精彩內容
+
+# Projects
+projects_list:
+  - title: "專案一"
+    description: "這是專案一的簡短描述。"
+    image: "/images/cover-image-coffee-2.jpg"
+    featured: true
+    links:
+      demo: "#"
+      repo: "#"
+      detail: "projects/demo-project/"
+    tags: ["前端", "開源"]
 
 # Comments (Disqus)
 # 註冊 Disqus 獲取 shortname: https://disqus.com/admin/create/

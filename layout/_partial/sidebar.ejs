@@ -45,7 +45,12 @@
                 <ul class="space-y-4">
                     <% site.posts.sort('date', -1).limit(theme.sidebar_settings.latest_posts.post_count).each(function(post){ %>
                     <li>
-                        <a href="<%- url_for(post.path) %>" class="block hover:text-primary dark:text-slate-300 dark:hover:text-primary-dark transition-colors text-sm font-medium line-clamp-1 mb-1"><%= post.title %></a>
+                        <a href="<%- url_for(post.path) %>" class="block hover:text-primary dark:text-slate-300 dark:hover:text-primary-dark transition-colors text-sm font-medium line-clamp-1 mb-1">
+                            <% if (post.layout === 'project') { %>
+                                <span class="inline-block border border-solid border-indigo-600 text-indigo-600 dark:border-indigo-300 dark:text-indigo-300 text-[0.7rem] font-semibold px-1 rounded mr-1">PROJECT</span>
+                            <% } %>
+                            <%= post.title %>
+                        </a>
                         <span class="text-xs text-slate-400 block"><%= date(post.date, 'YYYY-MM-DD') %></span>
                     </li>
                     <% }) %>
@@ -87,10 +92,17 @@
 
         <!-- 6. Calendar -->
         <% if(theme.sidebar_settings.calendar_this_month.enabled) { %>
+        <%
+            var postsThisMonth = site.posts.filter(function(post){
+                var postDate = new Date(post.date);
+                var now = new Date();
+                return postDate.getFullYear() === now.getFullYear() && postDate.getMonth() === now.getMonth();
+            });
+        %>
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
                 <h3 class="font-bold mb-4 dark:text-white border-l-4 border-green-400 pl-2"><%= theme.sidebar_settings.calendar_this_month.title %></h3>
                 <div class="calendar-grid dark:text-slate-300 text-xs">
-                    <% 
+                    <%
                     var now = new Date();
                     var year = now.getFullYear();
                     var month = now.getMonth();
@@ -98,10 +110,31 @@
                     var firstDay = new Date(year, month, 1).getDay();
                     var daysInMonth = new Date(year, month + 1, 0).getDate();
                     %>
-                    <div class="text-slate-400 font-medium pb-2">S</div><div class="text-slate-400 font-medium pb-2">M</div><div class="text-slate-400 font-medium pb-2">T</div><div class="text-slate-400 font-medium pb-2">W</div><div class="text-slate-400 font-medium pb-2">T</div><div class="text-slate-400 font-medium pb-2">F</div><div class="text-slate-400 font-medium pb-2">S</div>
+                    <div class="text-slate-400 font-medium pb-2">S</div>
+                    <div class="text-slate-400 font-medium pb-2">M</div>
+                    <div class="text-slate-400 font-medium pb-2">T</div>
+                    <div class="text-slate-400 font-medium pb-2">W</div>
+                    <div class="text-slate-400 font-medium pb-2">T</div>
+                    <div class="text-slate-400 font-medium pb-2">F</div>
+                    <div class="text-slate-400 font-medium pb-2">S</div>
                     <% for(var i=0; i<firstDay; i++) { %><div></div><% } %>
                     <% for(var d=1; d<=daysInMonth; d++) { %>
-                        <div class="<%= d === today ? 'today py-1 rounded bg-primary text-white' : 'py-1' %>"><%= d %></div>
+                        <%
+                        var hasPost = postsThisMonth.some(function(post){
+                            var postDate = new Date(post.date);
+                            return postDate.getDate() === d;
+                        });
+                        var cssPadding = 'pt-1 pb-3.5';
+                        if (hasPost) {
+                            cssPadding = 'py-1';
+                        }
+                        %>
+                        <div class="<%= d === today ? 'today ' + cssPadding + ' rounded bg-primary text-white' : cssPadding %>">
+                            <%= d %>
+                            <% if(hasPost) { %>
+                                <div class="w-1.5 h-1.5 bg-indigo-400 dark:bg-indigo-300 rounded-full mx-auto mt-1"></div>
+                            <% } %>
+                        </div>
                     <% } %>
                 </div>
             </div>

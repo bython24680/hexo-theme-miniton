@@ -99,20 +99,47 @@
 <% if (site.categories.length > 0) { %>
     <div>
         <h2 class="text-2xl font-bold mb-6 border-l-4 border-purple-400 pl-3 dark:text-white flex items-center gap-2">
-        <i class="fas fa-shapes text-purple-400"></i> 熱門主題
-    </h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <% site.categories.limit(4).each(function(cat){ 
-                var catConfig = theme.categories_map[cat.name] || theme.categories_map['default'];
-                var bgImg = catConfig ? catConfig.img : '';
-        %>
-        <a href="<%- url_for(cat.path) %>" class="group relative h-32 rounded-xl overflow-hidden shadow-sm block">
+            <i class="fas fa-shapes text-purple-400"></i> <%= theme.footer.hot_topics.title %>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <% site.categories.limit(4).each(function(cat) { %>
+            <%
+            var catConfig = theme.categories_map[cat.name] || theme.categories_map['default'];
+            var bgImg = catConfig ? catConfig.img : '';
+            %>
+            <a href="<%- url_for(cat.path) %>" class="group relative h-32 rounded-xl overflow-hidden shadow-sm block">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= bgImg %>');"></div>
                 <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/40 transition-colors">
                     <h3 class="text-white font-bold text-lg tracking-wide"><%= cat.name %></h3>
                 </div>
-        </a>
-        <% }) %>
+            </a>
+            <% }) %>
+        </div>
     </div>
+<% } %>
+<%
+var featuredProjects = theme.projects_list.filter(p => p.featured);
+%>
+<% if (featuredProjects.length > 0) { %>
+    <div>
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-2xl font-bold border-l-4 border-orange-400 pl-3 dark:text-white">
+                <i class="fas fa-icons text-orange-400"></i> <%= theme.footer.featured_projects.title %>
+            </h2>
+            <a href="<%- url_for('/projects') %>" class="text-sm text-primary dark:text-indigo-400 font-medium hover:underline">查看更多 <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <% featuredProjects.forEach(function(project) { %>
+                <% if (project.featured) { %>
+                    <a href="<%- url_for(project.links.detail) %>" class="group relative h-32 rounded-xl overflow-hidden shadow-sm block">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= project.image %>');"></div>
+                        <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/40 transition-colors">
+                            <h3 class="text-white font-bold text-lg tracking-wide"><%= project.title %></h3>
+                        </div>
+                    </a>
+                <% } %>
+            <% }) %>
+        </div>
     </div>
 <% } %>

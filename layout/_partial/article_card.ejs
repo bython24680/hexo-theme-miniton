@@ -1,7 +1,29 @@
-<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 hover:-translate-y-1 transition-transform group">
+<div class="relative bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4 flex flex-col md:flex-row gap-4 hover:-translate-y-1 transition-transform group">
+    <!-- 文章/project 相關顯示變數設定 -->
+    <%
+    var postLayout = post.layout || '';
+    var project = postLayout === 'project' ? theme.projects_list.find(p => p.title === post.title) : null;
+    var isProject = postLayout === 'project' && project;
+    if (isProject) {
+        var cover = project.image || theme.default_project_cover_image;
+        var description = project.description || (post.excerpt || strip_html(post.content).substring(0, 100) + '...');
+        if (project.tags && project.tags.length > 0) {
+            // Convert tags to objects with name and path
+            tags = [];
+            project.tags.forEach(function(tag) {
+                tags.push({ name: tag, path: '/tags/' + tag.replace(/\s+/g, '-').toLowerCase() + '/' });
+            });
+        }
+    } else {
+        var cover = post.cover_image || theme.default_article_cover_image;
+        var description = post.excerpt || strip_html(post.content).substring(0, 100) + '...';
+        var tags = post.tags || [];
+    }
+    %>
+    <% if (postLayout === 'project') { %>
+        <span class="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-semibold px-2 py-1 rounded z-10">PROJECT</span>
+    <% } %>
     <div class="w-full md:w-48 h-40 bg-slate-200 rounded-lg flex-shrink-0 bg-cover bg-center overflow-hidden">
-        <!-- 檢查文章是否有封面圖，沒有則使用預設 -->
-        <% var cover = post.cover_image || theme.default_article_cover_image; %>
         <a href="<%- url_for(post.path) %>" class="block w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style="background-image: url('<%= cover %>');"></a>
     </div>
     <div class="flex flex-col justify-between flex-1 py-1">
@@ -10,7 +32,7 @@
                 <a href="<%- url_for(post.path) %>"><%= post.title %></a>
             </h3>
             <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-2">
-                <%= post.excerpt || strip_html(post.content).substring(0, 100) %>...
+                <%= description %>
             </p>
         </div>
         <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400 mt-4 md:mt-0">
@@ -20,14 +42,19 @@
                     <i class="fas fa-folder"></i> <%= post.categories.data[0].name %>
                 </a>
             <% } %>
-            <% if(post.tags && post.tags.length){ %>
+            <% if(isProject && project.links.demo) { %>
+                <a href="<%= project.links.demo %>" target="_blank" class="flex items-center gap-1 text-primary hover:text-indigo-700 dark:text-primary-dark dark:hover:text-indigo-300 transition-colors">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+            <% } %>
+            <% if(tags && tags.length){ %>
                 <div class="flex items-center gap-1">
                     <i class="fas fa-hashtag"></i>
-                    <% post.tags.forEach(function(tag, index){ %>
+                    <% tags.forEach(function(tag, index){ %>
                         <a href="<%- url_for(tag.path) %>" class=" hover:text-primary dark:hover:text-indigo-400 transition-colors">
                             <%= tag.name %>
                         </a>
-                        <% if (index < post.tags.length - 1) { %>
+                        <% if (index < tags.length - 1) { %>
                             ,
                         <% } %>
                     <% }); %>
