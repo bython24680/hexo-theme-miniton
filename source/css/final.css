@@ -2562,6 +2562,9 @@ video {
 .text-xl{font-size:1.25rem;line-height:1.75rem}
 .text-xs{font-size:0.75rem;line-height:1rem}
 .text-9xl{font-size:8rem;line-height:1}
+.text-7xl{font-size:4.5rem;line-height:1}
+.text-8xl{font-size:6rem;line-height:1}
+.text-5xl{font-size:3rem;line-height:1}
 .font-bold{font-weight:700}
 .font-extrabold{font-weight:800}
 .font-medium{font-weight:500}
@@ -2698,7 +2701,9 @@ video {
 .dark\:hover\:text-white:hover:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}
 .group:hover .dark\:group-hover\:text-primary-dark:is(.dark *){--tw-text-opacity:1;color:rgb(129 140 248 / var(--tw-text-opacity, 1))}
 @media (min-width: 640px){
-.sm\:flex-row{flex-direction:row}}
+.sm\:flex-row{flex-direction:row}
+.sm\:text-2xl{font-size:1.5rem;line-height:2rem}
+.sm\:text-8xl{font-size:6rem;line-height:1}}
 @media (min-width: 768px){
 .md\:mt-0{margin-top:0px}
 .md\:flex{display:flex}
@@ -2712,7 +2717,10 @@ video {
 .md\:p-16{padding:4rem}
 .md\:text-4xl{font-size:2.25rem;line-height:2.5rem}
 .md\:text-6xl{font-size:3.75rem;line-height:1}
-.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}
+.md\:text-xl{font-size:1.25rem;line-height:1.75rem}
+.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}
+.md\:text-8xl{font-size:6rem;line-height:1}
+.md\:text-9xl{font-size:8rem;line-height:1}}
 @media (min-width: 1024px){
 .lg\:col-span-12{grid-column:span 12 / span 12}
 .lg\:col-span-4{grid-column:span 4 / span 4}
@@ -2720,6 +2728,8 @@ video {
 .lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}
 .lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}
 .lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}
-.lg\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}}
+.lg\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}
+.lg\:text-4xl{font-size:2.25rem;line-height:2.5rem}
+.lg\:text-9xl{font-size:8rem;line-height:1}}
 @media (min-width: 1280px){
 .xl\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}}
