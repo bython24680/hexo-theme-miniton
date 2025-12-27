@@ -156,9 +156,12 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const toc = document.getElementById('toc');
+                let tocChildTotalCounts = 0;
                 toc.querySelectorAll('.toc-item.toc-level-2').forEach(function (item) {
                     let child = item.querySelector('.toc-child');
                     if ((child?.childNodes.length ?? 0) > 0) {
+                        tocChildTotalCounts += child.childNodes.length;
+
                         let icon = document.createElement('i');
                         icon.classList.add('fa-solid', 'fa-caret-down');
                         icon.style.paddingRight = '0.25rem';
@@ -183,38 +186,42 @@
                 });
 
                 const collapseBtn = toc.querySelector('.toc-collapse-btn');
-                const collapseBtnIcon = collapseBtn.querySelector('i');
-                collapseBtn.addEventListener('click', function () {
-                    const items = toc.querySelectorAll('.toc-item.toc-level-2');
+                if (tocChildTotalCounts > 0) {
+                    const collapseBtnIcon = collapseBtn.querySelector('i');
+                    collapseBtn.addEventListener('click', function () {
+                        const items = toc.querySelectorAll('.toc-item.toc-level-2');
 
-                    if (collapseBtnIcon.classList.contains('fa-minimize')) {
-                        items.forEach(function (item) {
-                            let child = item.querySelector('.toc-child');
-                            if ((child?.childNodes.length ?? 0) > 0) {
-                                let icon = item.querySelector('i.fa-solid');
-                                icon.classList.add('fa-caret-right');
-                                icon.classList.remove('fa-caret-down');
-                                item.querySelector('.toc-child').classList.add('hidden');
-                            }
-                        });
+                        if (collapseBtnIcon.classList.contains('fa-minimize')) {
+                            items.forEach(function (item) {
+                                let child = item.querySelector('.toc-child');
+                                if ((child?.childNodes.length ?? 0) > 0) {
+                                    let icon = item.querySelector('i.fa-solid');
+                                    icon.classList.add('fa-caret-right');
+                                    icon.classList.remove('fa-caret-down');
+                                    item.querySelector('.toc-child').classList.add('hidden');
+                                }
+                            });
 
-                        collapseBtnIcon.classList.add('fa-maximize');
-                        collapseBtnIcon.classList.remove('fa-minimize');
-                    } else {
-                        items.forEach(function (item) {
-                            let child = item.querySelector('.toc-child');
-                            if ((child?.childNodes.length ?? 0) > 0) {
-                                let icon = item.querySelector('i.fa-solid');
-                                icon.classList.add('fa-caret-down');
-                                icon.classList.remove('fa-caret-right');
-                                item.querySelector('.toc-child').classList.remove('hidden');
-                            }
-                        });
+                            collapseBtnIcon.classList.add('fa-maximize');
+                            collapseBtnIcon.classList.remove('fa-minimize');
+                        } else {
+                            items.forEach(function (item) {
+                                let child = item.querySelector('.toc-child');
+                                if ((child?.childNodes.length ?? 0) > 0) {
+                                    let icon = item.querySelector('i.fa-solid');
+                                    icon.classList.add('fa-caret-down');
+                                    icon.classList.remove('fa-caret-right');
+                                    item.querySelector('.toc-child').classList.remove('hidden');
+                                }
+                            });
 
-                        collapseBtnIcon.classList.add('fa-minimize');
-                        collapseBtnIcon.classList.remove('fa-maximize');
-                    }
-                });
+                            collapseBtnIcon.classList.add('fa-minimize');
+                            collapseBtnIcon.classList.remove('fa-maximize');
+                        }
+                    });
+                } else {
+                    collapseBtn.remove();
+                }
             });
         </script>
     </div>
