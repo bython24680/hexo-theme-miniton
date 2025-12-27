@@ -10,7 +10,9 @@
                 var menu = config.theme_config.menu ?? theme.menu
                 %>
                 <% for (var i in menu){ %>
-                    <a href="<%- url_for(menu[i]) %>" class="nav-link hover:text-primary dark:hover:text-primary-dark transition-colors"><%= i %></a>
+                    <a href="<%- url_for(menu[i]) %>" class="nav-link hover:text-primary dark:hover:text-primary-dark transition-colors">
+                        <%= __('menu.' + i.toLowerCase()) %>
+                    </a>
                 <% } %>
             </nav>
 

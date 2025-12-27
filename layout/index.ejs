@@ -23,10 +23,10 @@
 %>
 <div class="relative <%= heroCssClass %> rounded-2xl p-8 mb-10 shadow-lg flex flex-col md:flex-row items-center justify-between overflow-hidden transition-colors duration-300">
     <div class="z-10 max-w-md">
-        <h1 class="text-3xl font-bold mb-4"><%= theme.hero.title %></h1>
-        <p class="mb-6 <%= heroSubtitleClass %>"><%= theme.hero.subtitle %></p>
+        <h1 class="text-3xl font-bold mb-4"><%= config?.theme_config?.hero?.title ?? __('index.hero.title') %></h1>
+        <p class="mb-6 <%= heroSubtitleClass %>"><%= config?.theme_config?.hero?.subtitle ?? __('index.hero.subtitle') %></p>
         <a href="<%- url_for(theme.hero.btn_link) %>" class="bg-white text-primary dark:text-indigo-900 px-6 py-2 rounded-lg font-medium hover:bg-slate-100 transition-colors inline-block">
-            <%= theme.hero.btn_text %> <i class="fas fa-arrow-right ml-1"></i>
+            <%= config?.theme_config?.hero?.btn_text ?? __('index.hero.btn') %> <i class="fas fa-arrow-right ml-1"></i>
         </a>
     </div>
     <% if(heroBgImage) { %>
@@ -43,7 +43,7 @@
 <% if (featuredPosts.length > 0) { %>
     <div class="mb-12">
         <h2 class="text-xl font-bold mb-6 border-l-4 border-yellow-400 pl-3 dark:text-white flex items-center gap-2">
-            <i class="fas fa-star text-yellow-400"></i> 精選文章
+            <i class="fas fa-star text-yellow-400"></i> <%= __('index.featured_posts') %>
         </h2> 
         <!-- First Big Post -->
         <% if (featuredPosts.length > 0) { var first = featuredPosts.data[0]; %>
@@ -88,10 +88,13 @@ var hasLatestPosts = latestPosts.length > 0;
 <div class="mb-12">
     <div class="flex justify-between items-end mb-6">
         <h2 class="text-2xl font-bold border-l-4 border-primary dark:border-primary-dark pl-3 dark:text-white">
-            <i class="fas fa-clock text-blue-400"></i> 最新文章
+            <i class="fas fa-clock text-blue-400"></i> <%= __('index.latest_posts') %>
         </h2>
         <% if (hasLatestPosts) { %>
-        <a href="<%- url_for('/archives') %>" class="text-sm text-primary dark:text-indigo-400 font-medium hover:underline">查看更多 <i class="fas fa-arrow-right ml-1"></i></a>
+        <a href="<%- url_for('/archives') %>" class="text-sm text-primary dark:text-indigo-400 font-medium hover:underline">
+            <%= __('common.more') %>
+            <i class="fas fa-arrow-right ml-1"></i>
+        </a>
         <% } %>
     </div>
     <div class="space-y-6">
@@ -102,7 +105,7 @@ var hasLatestPosts = latestPosts.length > 0;
         <% } else { %>
             <div class="flex flex-col items-center justify-center gap-y-[1rem] px-[1rem] py-[3rem] text-slate-400">
                 <i class="fa-solid fa-book text-4xl"></i>
-                <div class="text-lg">喔喔，還沒有文章喔</div>
+                <div class="text-lg"><%= __('index.latest_posts_empty') %></div>
             </div>
         <% } %>
     </div>
@@ -112,7 +115,7 @@ var hasLatestPosts = latestPosts.length > 0;
 <% if (site.categories.length > 0) { %>
     <div>
         <h2 class="text-2xl font-bold mb-6 border-l-4 border-purple-400 pl-3 dark:text-white flex items-center gap-2">
-            <i class="fas fa-shapes text-purple-400"></i> <%= theme.footer.hot_topics.title %>
+            <i class="fas fa-shapes text-purple-400"></i> <%= config?.theme_config?.footer?.hot_topics?.title ?? __('index.hot_topics') %>
         </h2>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -143,7 +146,10 @@ if (config.theme_config.projects_list) {
             <h2 class="text-2xl font-bold border-l-4 border-orange-400 pl-3 dark:text-white">
                 <i class="fas fa-icons text-orange-400"></i> <%= theme.footer.featured_projects.title %>
             </h2>
-            <a href="<%- url_for('/projects') %>" class="text-sm text-primary dark:text-indigo-400 font-medium hover:underline">查看更多 <i class="fas fa-arrow-right ml-1"></i></a>
+            <a href="<%- url_for('/projects') %>" class="text-sm text-primary dark:text-indigo-400 font-medium hover:underline">
+                <%= __('common.more') %>
+                <i class="fas fa-arrow-right ml-1"></i>
+            </a>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <% featuredProjects.forEach(function(project) { %>

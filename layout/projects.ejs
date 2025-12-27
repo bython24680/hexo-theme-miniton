@@ -1,6 +1,6 @@
 <div class="text-center mb-12">
-    <h1 class="text-3xl font-bold dark:text-white mb-4"><%= theme.content_settings.projects.page_title %></h1>
-    <p class="text-slate-500 dark:text-slate-400"><%= theme.content_settings.projects.page_description %></p>
+    <h1 class="text-3xl font-bold dark:text-white mb-4"><%= config?.theme_config?.content_settings?.projects?.page_title ?? __('projects.title') %></h1>
+    <p class="text-slate-500 dark:text-slate-400"><%= config.theme_config?.content_settings?.projects?.page_description ?? __('projects.description') %></p>
 </div>
 
 <!-- Projects Grid -->
@@ -60,6 +60,6 @@ var projects = config.theme_config?.projects_list ?? [];
 <% } else { %>
     <div class="flex flex-col items-center justify-center py-20">
         <div class="text-6xl text-slate-400 dark:text-slate-600 mb-4"><i class="fa-regular fa-newspaper"></i></div>
-        <p class="text-center text-slate-500 dark:text-slate-400 col-span-full"><%= theme.content_settings.projects.no_project_text %></p>
+        <p class="text-center text-slate-500 dark:text-slate-400 col-span-full"><%= config.theme_config?.content_settings?.projects?.no_project_text ?? __('projects.empty') %></p>
     </div>
 <% } %>
