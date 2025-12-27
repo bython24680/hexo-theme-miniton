@@ -132,7 +132,10 @@ var hasLatestPosts = latestPosts.length > 0;
     </div>
 <% } %>
 <%
-var featuredProjects = theme.projects_list.filter(p => p.featured);
+var featuredProjects = [];
+if (config.theme_config.projects_list) {
+    featuredProjects = config.theme_config.projects_list.filter(p => p.featured);
+}
 %>
 <% if (featuredProjects.length > 0) { %>
     <div>
