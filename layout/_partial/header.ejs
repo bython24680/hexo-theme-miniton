@@ -1,0 +1,29 @@
+<header class="bg-white dark:bg-slate-800 shadow-sm sticky top-0 z-40 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="<%- url_for('/') %>" class="flex items-center gap-2 group">
+             <span class="text-xl font-bold tracking-tight dark:text-white"><%= config.title %></span>
+        </a>
+
+        <div class="flex items-center gap-4 md:gap-6">
+            <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <%
+                var menu = config.theme_config.menu ?? theme.menu
+                %>
+                <% for (var i in menu){ %>
+                    <a href="<%- url_for(menu[i]) %>" class="nav-link hover:text-primary dark:hover:text-primary-dark transition-colors"><%= i %></a>
+                <% } %>
+            </nav>
+
+            <!-- Search Trigger -->
+            <button onclick="openSearch()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors">
+                <i class="fas fa-search"></i>
+            </button>
+
+            <!-- Dark Mode -->
+             <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors">
+                 <i class="fas fa-moon dark:hidden"></i>
+                 <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        </div>
+    </div>
+</header>
