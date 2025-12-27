@@ -1,11 +1,11 @@
 <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto pt-12 pb-6">
     <%
-    var hotCategories = theme.footer.hot_topics.enabled ? theme.footer.hot_topics.topics : [];
+    var hotCategories = theme.footer.hot_topics.enabled ? (config?.theme_config?.footer?.hot_topics?.topics ?? []) : [];
     hotCategories = site.categories.filter(cat => hotCategories.includes(cat.name));
     if (hotCategories.length === 0) {
         hotCategories = site.categories.sort('length', -1).limit(5);
     }
-    var featuredProjects = theme.footer.featured_projects.enabled ? theme.projects_list.filter(p => p.featured) : [];
+    var featuredProjects = theme.footer.featured_projects.enabled ? (config.theme_config?.projects_list ?? []).filter(p => p.featured) : [];
 
     var footerGridCols = 2;
     if (hotCategories.length > 0) footerGridCols++;
@@ -24,15 +24,27 @@
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white flex items-center gap-2">
                     <% if(theme.avatar){ %><img src="<%= theme.avatar %>" alt="Logo" class="w-8 h-8 rounded-full"><% } %>
-                    <%= config.title %>
+                    <span><%= config.author %></span>
                 </h3>
                 <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
                     <%= theme.footer.description %>
                 </p>
                 <div class="flex gap-3">
-                    <% if(theme.social.twitter) { %><a href="<%= theme.social.twitter %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors"><i class="fab fa-twitter"></i></a><% } %>
-                    <% if(theme.social.github) { %><a href="<%= theme.social.github %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors"><i class="fab fa-github"></i></a><% } %>
-                    <% if(theme.social.email) { %><a href="<%= theme.social.email %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors"><i class="fas fa-envelope"></i></a><% } %>
+                    <% if(theme.social.twitter) { %>
+                        <a href="<%= theme.social.twitter %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    <% } %>
+                    <% if(theme.social.github) { %>
+                        <a href="<%= theme.social.github %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    <% } %>
+                    <% if(theme.social.email) { %>
+                        <a href="<%= theme.social.email %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    <% } %>
                 </div>
             </div>
 
@@ -42,7 +54,9 @@
                 <h3 class="font-bold text-lg mb-4 dark:text-white"><%= theme.footer.hot_topics.title %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% hotCategories.each(function(cat){ %>
-                        <li><a href="<%- url_for(cat.path) %>" class="hover:text-primary"><%= cat.name %></a></li>
+                        <li>
+                            <a href="<%- url_for(cat.path) %>" class="hover:text-primary"><%= cat.name %></a>
+                        </li>
                     <% }) %>
                 </ul>
             </div>
@@ -54,18 +68,23 @@
                 <h3 class="font-bold text-lg mb-4 dark:text-white"><%= theme.footer.featured_projects.title %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% featuredProjects.forEach(function(project) { %>
-                        <li><a href="<%- url_for(project.permalink) %>" class="hover:text-primary"><%= project.title %></a></li>
+                        <li>
+                            <a href="<%- url_for(project.permalink) %>" class="hover:text-primary"><%= project.title %></a>
+                        </li>
                     <% }) %>
                 </ul>
             </div>
             <% } %>
 
             <!-- Col 4: Navigation -->
+            <% var menu = config.theme_config.menu ?? theme.menu; %>
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white">快速導航</h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
-                    <% for (var i in theme.menu){ %>
-                        <li><a href="<%- url_for(theme.menu[i]) %>" class="hover:text-primary"><%= i %></a></li>
+                    <% for (var i in menu) { %>
+                        <li>
+                            <a href="<%- url_for(menu[i]) %>" class="hover:text-primary"><%= i %></a>
+                        </li>
                     <% } %>
                 </ul>
             </div>
@@ -76,7 +95,9 @@
                 <h3 class="font-bold text-lg mb-4 dark:text-white">推薦連結</h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% for (var i in theme.footer.recommended_links.links){ %>
-                        <li><a href="<%= theme.footer.recommended_links.links[i].url %>" class="hover:text-primary" target="_blank" rel="noopener"><%= theme.footer.recommended_links.links[i].name %></a></li>
+                        <li>
+                            <a href="<%= theme.footer.recommended_links.links[i].url %>" class="hover:text-primary" target="_blank" rel="noopener"><%= theme.footer.recommended_links.links[i].name %></a>
+                        </li>
                     <% } %>
                 </ul>
             </div>

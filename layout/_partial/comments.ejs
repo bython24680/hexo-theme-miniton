@@ -1,5 +1,5 @@
 <% if (theme.disqus_shortname && page.comments !== false) { %>
-<div id="disqus_thread" class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-8 mt-8"></div>
+<div id="disqus_thread" class="bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-2xl shadow-sm p-8 mt-8"></div>
 <script>
     var disqus_config = function () {
         this.page.url = '<%= config.url %>/<%= page.path %>'; 

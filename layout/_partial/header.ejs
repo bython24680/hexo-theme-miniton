@@ -6,8 +6,11 @@
 
         <div class="flex items-center gap-4 md:gap-6">
             <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-                <% for (var i in theme.menu){ %>
-                    <a href="<%- url_for(theme.menu[i]) %>" class="nav-link hover:text-primary dark:hover:text-primary-dark transition-colors"><%= i %></a>
+                <%
+                var menu = config.theme_config.menu ?? theme.menu
+                %>
+                <% for (var i in menu){ %>
+                    <a href="<%- url_for(menu[i]) %>" class="nav-link hover:text-primary dark:hover:text-primary-dark transition-colors"><%= i %></a>
                 <% } %>
             </nav>
 
