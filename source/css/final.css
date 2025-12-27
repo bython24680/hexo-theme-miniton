@@ -2441,6 +2441,7 @@ video {
 .gap-6{gap:1.5rem}
 .gap-8{gap:2rem}
 .gap-y-\[1rem\]{row-gap:1rem}
+.gap-y-\[2\.25rem\]{row-gap:2.25rem}
 .-space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(-0.5rem * var(--tw-space-x-reverse));margin-left:calc(-0.5rem * calc(1 - var(--tw-space-x-reverse)))}
 .space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}
 .space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}
@@ -2534,6 +2535,7 @@ video {
 .py-6{padding-top:1.5rem;padding-bottom:1.5rem}
 .py-8{padding-top:2rem;padding-bottom:2rem}
 .py-\[3rem\]{padding-top:3rem;padding-bottom:3rem}
+.py-\[2\.5rem\]{padding-top:2.5rem;padding-bottom:2.5rem}
 .pb-2{padding-bottom:0.5rem}
 .pb-3\.5{padding-bottom:0.875rem}
 .pb-32{padding-bottom:8rem}
@@ -2559,6 +2561,7 @@ video {
 .text-sm{font-size:0.875rem;line-height:1.25rem}
 .text-xl{font-size:1.25rem;line-height:1.75rem}
 .text-xs{font-size:0.75rem;line-height:1rem}
+.text-9xl{font-size:8rem;line-height:1}
 .font-bold{font-weight:700}
 .font-extrabold{font-weight:800}
 .font-medium{font-weight:500}
