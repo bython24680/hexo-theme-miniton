@@ -5,7 +5,7 @@
     if (hotCategories.length === 0) {
         hotCategories = site.categories.sort('length', -1).limit(5);
     }
-    var featuredProjects = theme.footer.featured_projects.enabled ? (config.theme_config?.projects_list ?? []).filter(p => p.featured) : [];
+    var featuredProjects = theme.footer.featured_projects.enabled ? (config?.theme_config?.projects_list ?? []).filter(p => p.featured) : [];
 
     var footerGridCols = 2;
     if (hotCategories.length > 0) footerGridCols++;
@@ -77,7 +77,7 @@
             <% } %>
 
             <!-- Col 4: Navigation -->
-            <% var menu = config.theme_config.menu ?? theme.menu; %>
+            <% var menu = config?.theme_config?.menu ?? theme.menu; %>
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white"><%= __('footer.navigation') %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
