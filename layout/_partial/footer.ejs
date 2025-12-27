@@ -1,6 +1,6 @@
 <footer class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-auto pt-12 pb-6">
     <%
-    var hotCategories = theme.footer.hot_topics.enabled ? theme.footer.hot_topics.topics : [];
+    var hotCategories = theme.footer.hot_topics.enabled ? (config?.footer?.hot_topics?.topics ?? []) : [];
     hotCategories = site.categories.filter(cat => hotCategories.includes(cat.name));
     if (hotCategories.length === 0) {
         hotCategories = site.categories.sort('length', -1).limit(5);
