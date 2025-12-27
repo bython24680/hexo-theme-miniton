@@ -77,12 +77,13 @@
             <% } %>
 
             <!-- Col 4: Navigation -->
+            <% var menu = config.theme_config.menu ?? theme.menu; %>
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white">快速導航</h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
-                    <% for (var i in theme.menu){ %>
+                    <% for (var i in menu) { %>
                         <li>
-                            <a href="<%- url_for(theme.menu[i]) %>" class="hover:text-primary"><%= i %></a>
+                            <a href="<%- url_for(menu[i]) %>" class="hover:text-primary"><%= i %></a>
                         </li>
                     <% } %>
                 </ul>
