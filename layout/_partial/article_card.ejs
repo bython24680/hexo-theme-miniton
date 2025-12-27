@@ -2,7 +2,7 @@
     <!-- 文章/project 相關顯示變數設定 -->
     <%
     var postLayout = post.layout || '';
-    var project = postLayout === 'project' ? theme.projects_list.find(p => p.title === post.title) : null;
+    var project = postLayout === 'project' ? (config.theme_config?.projects_list ?? []).find(p => p.title === post.title) : null;
     var isProject = postLayout === 'project' && project;
     if (isProject) {
         var cover = project.image || theme.default_project_cover_image;
