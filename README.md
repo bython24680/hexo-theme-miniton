@@ -101,6 +101,7 @@ Supported layouts:
 - about
 - archive
 - category
+- error404 : the 404 page
 - page
 - post
 - project
@@ -119,6 +120,17 @@ $ hexo serve
 ```
 
 4. [Deploy the blog](https://hexo.io/docs/one-command-deployment.html)
+
+### Special page - 404 page
+
+1. Create the page via hexo command:
+
+```shell
+hexo new error404 404
+```
+
+2. Move `source/_posts/404.md` file to `source/404.md`
+3. Build the website
 
 ## Configuration
 
