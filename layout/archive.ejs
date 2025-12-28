@@ -1,5 +1,5 @@
 <div>
-    <h2 class="text-2xl font-bold mb-6 dark:text-white"><%= theme.content_settings.archives.page_title %></h2> 
+    <h2 class="text-2xl font-bold mb-6 dark:text-white"><%= config?.theme_config?.content_settings?.archives.page_title ?? __('archive.title')  %></h2>
     <div class="mb-12">
         <div class="space-y-6">
             <% page.posts.limit(theme.content_settings.archives.posts_per_page).each(function(post){ %>

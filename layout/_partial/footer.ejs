@@ -5,7 +5,7 @@
     if (hotCategories.length === 0) {
         hotCategories = site.categories.sort('length', -1).limit(5);
     }
-    var featuredProjects = theme.footer.featured_projects.enabled ? (config.theme_config?.projects_list ?? []).filter(p => p.featured) : [];
+    var featuredProjects = theme.footer.featured_projects.enabled ? (config?.theme_config?.projects_list ?? []).filter(p => p.featured) : [];
 
     var footerGridCols = 2;
     if (hotCategories.length > 0) footerGridCols++;
@@ -27,7 +27,7 @@
                     <span><%= config.author %></span>
                 </h3>
                 <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
-                    <%= theme.footer.description %>
+                    <%= config?.theme_config?.footer?.description ?? __('footer.description') %>
                 </p>
                 <div class="flex gap-3">
                     <% if(theme.social.twitter) { %>
@@ -51,7 +51,7 @@
             <!-- Col 2: Topics -->
             <% if (hotCategories.length > 0) { %>
             <div>
-                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= theme.footer.hot_topics.title %></h3>
+                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= config?.theme_config?.footer?.hot_topics?.title ?? __('footer.hot_topics') %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% hotCategories.each(function(cat){ %>
                         <li>
@@ -65,7 +65,7 @@
             <!-- Col 3: Projects -->
             <% if (featuredProjects.length > 0) { %>
             <div>
-                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= theme.footer.featured_projects.title %></h3>
+                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= config?.theme_config?.footer?.featured_projects?.title ?? __('footer.featured_projects') %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% featuredProjects.forEach(function(project) { %>
                         <li>
@@ -77,13 +77,13 @@
             <% } %>
 
             <!-- Col 4: Navigation -->
-            <% var menu = config.theme_config.menu ?? theme.menu; %>
+            <% var menu = config?.theme_config?.menu ?? theme.menu; %>
             <div>
-                <h3 class="font-bold text-lg mb-4 dark:text-white">快速導航</h3>
+                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= __('footer.navigation') %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% for (var i in menu) { %>
                         <li>
-                            <a href="<%- url_for(menu[i]) %>" class="hover:text-primary"><%= i %></a>
+                            <a href="<%- url_for(menu[i]) %>" class="hover:text-primary"><%= __('menu.' + i.toLowerCase()) %></a>
                         </li>
                     <% } %>
                 </ul>
@@ -92,7 +92,7 @@
             <!-- Col 5: Recommend links -->
             <% if (theme.footer.recommended_links.enabled && theme.footer.recommended_links.links.length > 0) { %>
             <div>
-                <h3 class="font-bold text-lg mb-4 dark:text-white">推薦連結</h3>
+                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= config?.theme_config?.footer?.recommended_links?.title ?? __('footer.recommend_links') %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
                     <% for (var i in theme.footer.recommended_links.links){ %>
                         <li>
@@ -106,8 +106,8 @@
             <% if (theme.footer.buy_coffee_link) { %>
             <!-- Col 6: Subscribe/Donate -->
             <div>
-                <h3 class="font-bold text-lg mb-4 dark:text-white">支持創作</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">如果內容對你有幫助，歡迎贊助！</p>
+                <h3 class="font-bold text-lg mb-4 dark:text-white"><%= __('footer.donate.title') %></h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mb-4"><%= __('footer.donate.description') %></p>
                 <a href="<%= theme.footer.buy_coffee_link %>" class="w-full bg-primary hover:bg-indigo-700 text-white py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 mb-3">
                     <i class="fas fa-coffee"></i> Buy me a coffee
                 </a>

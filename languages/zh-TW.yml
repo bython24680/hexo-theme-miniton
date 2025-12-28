@@ -1,0 +1,73 @@
+---
+name: 繁體中文
+menu:
+  home: 首頁
+  articles: 文章
+  topics: 主題
+  tags: 標籤
+  projects: 專案
+  about: 關於
+sidebar:
+  site_info:
+    title: 網站資訊
+    post_counts: 文章總數
+    live_days: 建站天數
+    last_updated_at: 最後更新
+    word_counts: 全站字數
+  latest_posts: 最新文章
+  author_recommend: 站長推薦
+  tag_cloud: 標籤雲
+  calendar_this_month: 本月日曆
+  toc: 目錄
+  related_posts: 相關文章
+footer:
+  description: 專注於分享網頁開發技術、設計靈感與數位生產力工具。
+  hot_topics: 熱門主題
+  featured_projects: 推薦專案
+  navigation: 快速導航
+  recommend_links: 推薦連結
+  donate:
+    title: 支持創作
+    description: 如果內容對你有幫助，歡迎贊助！
+index:
+  hero:
+    title: 探索科技與生活的交匯點
+    subtitle: 紀錄前端開發心得、設計靈感以及數位游牧的生活點滴。
+    btn: 探索主題
+  featured_posts: 精選文章
+  latest_posts: 最新文章
+  latest_posts_empty: 喔喔，還沒有文章喔
+  hot_topics: 熱門主題
+archive:
+  title: 所有文章
+projects:
+  title: 專案展示
+  description: 這裡展示了我參與開發的開源專案、Side Projects 以及實驗性作品。
+  empty: 目前沒有專案或作品可供瀏覽。
+topics:
+  title: 所有主題
+  description: 探索我們涵蓋的各種主題，從前端開發到數位生活，找到你感興趣的內容。
+  empty: 目前沒有主題可供瀏覽。
+tags:
+  title: 所有標籤
+  description: 探索所有 %d 個標籤
+post:
+  prev_post: 上一篇
+  next_post: 下一篇
+project:
+  back_to_projects_page: 回到專案列表
+  created_by: 製作者
+  action_button:
+    view_code: 查看原始碼
+    document: 文件
+  share:
+    description: 覺得這個專案很酷？分享給朋友！
+search:
+  input_placeholder: 搜尋文章關鍵字
+  close: 關閉
+common:
+  more: 查看更多
+  share:
+    title_post: 分享文章
+    copy_link_tooltip: 複製連結（適用於 Instagram）
+    copied_hint: 已複製！
