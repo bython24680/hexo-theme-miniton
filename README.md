@@ -11,6 +11,7 @@ A responsive, flat-design and lightweight [Hexo](http://hexo.io/) theme.
 - [Scaffolds](#scaffolds)
 - [Installation](#installation)
 - [How to use](#how-to-use)
+- [Language](#language)
 - [Configuration](#configuration)
 - [License](#license)
 
@@ -131,6 +132,17 @@ hexo new error404 404
 
 2. Move `source/_posts/404.md` file to `source/404.md`
 3. Build the website
+
+## Language
+
+Now we support these languages:
+
+- en
+- ja
+- zh-TW
+- zh-CN
+
+Please choose one and update the `language` setting in your blog's configuration file `_config.yml`. The default language is en.
 
 ## Configuration
 
