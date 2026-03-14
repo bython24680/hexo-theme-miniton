@@ -150,12 +150,49 @@ Add the following configurations under the `theme_config` section in your blog's
 
 ### Navigation menu
 
+Miniton provides two types of menu, prototype version with language supported, and customized version without translate.
+
+- Prototype version with i18n
+
 A menu item is a key-value pair of display text and its link.
 
 ```yml
+menu_customized: false
 menu:
-  - Home: /
-  - Articles: /archives
+  Home: /
+  Articles: /archives
+  Topocs: /topics
+  Tags: /tags
+  Projects: /projects
+  About: /about
+```
+
+You can remove some pages if you don't need them.
+
+- Customized
+
+You have to set `menu_customized` to true to enable this feature.
+
+```yml
+menu_customized: true
+Home:
+  name: Home
+  link: /
+Articles:
+  name: Posts
+  link: /archives
+Topics:
+  name: Topics
+  link: /topics
+Tags:
+  name: Tags
+  link: /tags
+Projects:
+  name: Projects
+  link: /projects
+About:
+  name: About
+  link: /about
 ```
 
 ### Site information
