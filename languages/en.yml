@@ -1,0 +1,73 @@
+---
+name: English
+menu:
+  home: Home
+  articles: Articles
+  topics: Topics
+  tags: Tags
+  projects: Projects
+  about: About
+sidebar:
+  site_info:
+    title: Site Information
+    post_counts: Total Posts
+    live_days: Days Online
+    last_updated_at: Last Updated
+    word_counts: Total Word Count
+  latest_posts: Latest Posts
+  author_recommend: Editor's Picks
+  tag_cloud: Tag Cloud
+  calendar_this_month: Calendar (This Month)
+  toc: Table of Contents
+  related_posts: Related Posts
+footer:
+  description: Focused on sharing web development techniques, design inspiration, and digital productivity tools.
+  hot_topics: Trending Topics
+  featured_projects: Featured Projects
+  navigation: Quick Navigatoin
+  recommend_links: Recommended Links
+  donate:
+    title: Support My Work
+    description: If you find the content helpful, feel free to support me!
+index:
+  hero:
+    title: Exploring the Intersection of Technology and Life
+    subtitle: Shaaring front-end development insights, design inspiration, and stories from a digital nomad lifestyle.
+    btn: Explore Topics
+  featured_posts: Featured Posts
+  latest_posts: Latest Posts
+  latest_posts_empty: Oops, no posts yet.
+  hot_topics: Hot Topics
+archive:
+  title: All Posts
+projects:
+  title: Project Showcase
+  description: Here you'll find open-source projects, side projects, and experimental works I've participated in.
+  empty: There are currently no projects or workds to display.
+topics:
+  title: All Topics
+  description: Explore a wide range of topics, from front-end development to digital life, and find what interests you.
+  empty: There are currently no topics to display.
+tags:
+  title: All Tags
+  description: Browse all %d tags
+post:
+  prev_post: Previous
+  next_post: Next
+project:
+  back_to_projects_page: Back to Projects
+  created_by: Created by
+  action_button:
+    view_code: View Code
+    document: Documentation
+  share:
+    description: Think this project is cool? Share it with your friends!
+search:
+  input_placeholder: Search for articles
+  close: Close
+common:
+  more: View More
+  share:
+    title_post: Share Post
+    copy_link_tooltip: Copy link（for Instagram）
+    copied_hint: Copied!

@@ -1,0 +1,85 @@
+---
+name: 日本語
+
+menu:
+  home: ホーム
+  articles: 記事
+  topics: トピック
+  tags: タグ
+  projects: プロジェクト
+  about: このサイトについて
+
+sidebar:
+  site_info:
+    title: サイト情報
+    post_counts: 記事数
+    live_days: 運営日数
+    last_updated_at: 最終更新
+    word_counts: 総文字数
+  latest_posts: 最新記事
+  author_recommend: おすすめ記事
+  tag_cloud: タグクラウド
+  calendar_this_month: 今月のカレンダー
+  toc: 目次
+  related_posts: 関連記事
+
+footer:
+  description: Web開発技術、デザインのインスピレーション、デジタル生産性ツールを中心に発信しています。
+  hot_topics: 人気トピック
+  featured_projects: おすすめプロジェクト
+  navigation: クイックナビ
+  recommend_links: おすすめリンク
+  donate:
+    title: 応援する
+    description: 内容がお役に立った場合は、ぜひご支援ください！
+
+index:
+  hero:
+    title: テクノロジーと暮らしが交差する場所
+    subtitle: フロントエンド開発の知見、デザインのインスピレーション、デジタルノマドのライフスタイルを記録しています。
+    btn: トピックを見る
+  featured_posts: 注目の記事
+  latest_posts: 最新記事
+  latest_posts_empty: まだ記事がありません
+  hot_topics: 人気トピック
+
+archive:
+  title: すべての記事
+
+projects:
+  title: プロジェクト一覧
+  description: 私が関わったオープンソースプロジェクト、サイドプロジェクト、実験的な作品を紹介しています。
+  empty: 表示できるプロジェクトや作品はまだありません。
+
+topics:
+  title: すべてのトピック
+  description: フロントエンド開発からデジタルライフまで、幅広いテーマの中から興味のある内容を見つけてください。
+  empty: 表示できるトピックはまだありません。
+
+tags:
+  title: すべてのタグ
+  description: 全 %d 件のタグ
+
+post:
+  prev_post: 前の記事
+  next_post: 次の記事
+
+project:
+  back_to_projects_page: プロジェクト一覧に戻る
+  created_by: 制作者
+  action_button:
+    view_code: ソースコードを見る
+    document: ドキュメント
+  share:
+    description: このプロジェクトが気に入りましたか？ぜひシェアしてください！
+
+search:
+  input_placeholder: 記事を検索
+  close: 閉じる
+
+common:
+  more: もっと見る
+  share:
+    title_post: 記事をシェア
+    copy_link_tooltip: リンクをコピー（Instagram対応）
+    copied_hint: コピーしました！

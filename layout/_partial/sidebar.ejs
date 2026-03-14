@@ -28,12 +28,36 @@
                 var lastUpdate = site.posts.sort('updated', -1).data[0] ? site.posts.sort('updated', -1).data[0].updated : new Date();
             %>
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
-                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-indigo-400 pl-2"><%= theme.sidebar_settings.site_info.title %></h3>
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-indigo-400 pl-2"><%= config?.theme_config?.sidebar_settings?.site_info?.title ?? __('sidebar.site_info.title') %></h3>
                 <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-                    <li class="flex justify-between"><span><i class="fas fa-file-alt w-5 text-slate-400"></i> 文章總數</span> <span class="font-bold"><%= site.posts.length %></span></li>
-                    <li class="flex justify-between"><span><i class="fas fa-clock w-5 text-slate-400"></i> 建站天數</span> <span class="font-bold"><%= daysOnline %></span></li>
-                    <li class="flex justify-between"><span><i class="fas fa-history w-5 text-slate-400"></i> 最後更新</span> <span><%= date(lastUpdate, 'YYYY-MM-DD') %></span></li>
-                    <li class="flex justify-between"><span><i class="fas fa-pen-nib w-5 text-slate-400"></i> 全站字數</span> <span><%= wordCountDisplay %></span></li>
+                    <li class="flex justify-between">
+                        <span>
+                            <i class="fas fa-file-alt w-5 text-slate-400"></i>
+                            <%= __('sidebar.site_info.post_counts') %>
+                        </span>
+                        <span class="font-bold"><%= site.posts.length %></span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>
+                            <i class="fas fa-clock w-5 text-slate-400"></i>
+                            <%= __('sidebar.site_info.live_days') %>
+                        </span>
+                        <span class="font-bold"><%= daysOnline %></span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>
+                            <i class="fas fa-history w-5 text-slate-400"></i>
+                            <%= __('sidebar.site_info.last_updated_at') %>
+                        </span>
+                        <span><%= date(lastUpdate, 'YYYY-MM-DD') %></span>
+                    </li>
+                    <li class="flex justify-between">
+                        <span>
+                            <i class="fas fa-pen-nib w-5 text-slate-400"></i>
+                            <%= __('sidebar.site_info.word_counts') %>
+                        </span>
+                        <span><%= wordCountDisplay %></span>
+                    </li>
                 </ul>
             </div>
         <% } %>
@@ -41,7 +65,7 @@
         <!-- 3. Recent Posts -->
         <% if(theme.sidebar_settings.latest_posts.enabled) { %>
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
-                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-blue-400 pl-2"><%= theme.sidebar_settings.latest_posts.title %></h3>
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-blue-400 pl-2"><%= config?.theme_config?.sidebar_settings?.latest_posts?.title ?? __('sidebar.latest_posts') %></h3>
                 <ul class="space-y-4">
                     <% site.posts.sort('date', -1).limit(theme.sidebar_settings.latest_posts.post_count).each(function(post){ %>
                     <li>
@@ -61,7 +85,7 @@
         <!-- 4. Recommended -->
         <% if(theme.sidebar_settings.recommended_posts.enabled) { %>
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
-                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-red-400 pl-2"><%= theme.sidebar_settings.recommended_posts.title %></h3>
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-red-400 pl-2"><%= config?.theme_config?.sidebar_settings?.recommended_posts?.title ?? __('sidebar.author_recommend') %></h3>
                 <div class="space-y-4">
                     <% 
                     var recTag = theme.sidebar_settings.recommended_posts.tag || 'featured';
@@ -83,7 +107,7 @@
         <!-- 5. Tags -->
         <% if(theme.sidebar_settings.tag_list.enabled) { %>
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
-                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-pink-400 pl-2"><%= theme.sidebar_settings.tag_list.title %></h3>
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-pink-400 pl-2"><%= config?.theme_config?.sidebar_settings?.tag_list?.title ?? __('sidebar.tag_cloud') %></h3>
                 <div class="flex flex-wrap gap-2">
                     <%- list_tags({ show_count: false, style: 'none', separator: '', class: { a: 'bg-slate-100 dark:bg-slate-700 text-xs px-2 py-1 rounded text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white transition-colors' } }) %>
                 </div>
@@ -100,7 +124,7 @@
             });
         %>
             <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
-                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-green-400 pl-2"><%= theme.sidebar_settings.calendar_this_month.title %></h3>
+                <h3 class="font-bold mb-4 dark:text-white border-l-4 border-green-400 pl-2"><%= config?.theme_config?.sidebar_settings?.calendar_this_month?.title ?? __('sidebar.calendar_this_month') %></h3>
                 <div class="calendar-grid dark:text-slate-300 text-xs">
                     <%
                     var now = new Date();
@@ -145,7 +169,7 @@
     <!-- Case B: Post Detail Sidebar (TOC) -->
     <div id="toc" class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 sticky top-20 border border-slate-100 dark:border-slate-700 z-10">
         <div class="mb-4 flex items-center justify-between">
-            <h3 class="font-bold dark:text-white border-l-4 border-indigo-400 pl-2">目錄</h3>
+            <h3 class="font-bold dark:text-white border-l-4 border-indigo-400 pl-2"><%= __('sidebar.toc') %></h3>
             <div class="toc-collapse-btn text-slate-600 dark:text-slate-300 cursor-pointer">
                 <i class="fa-solid fa-minimize"></i>
             </div>
@@ -245,7 +269,7 @@
     %>
     <% if (randomPosts.length > 0 && theme.sidebar_post_settings.related_posts.enabled) { %>
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 sticky top-20 border border-slate-100 dark:border-slate-700">
-            <h3 class="font-bold mb-4 dark:text-white border-l-4 border-sky-400 pl-2"><%= theme.sidebar_post_settings.related_posts.title %></h3>
+            <h3 class="font-bold mb-4 dark:text-white border-l-4 border-sky-400 pl-2"><%= config?.theme_config?.sidebar_post_settings?.related_posts?.title ?? __('sidebar.related_posts') %></h3>
             <div class="space-y-4">
             <% randomPosts.forEach(post => { %>
                 <a href="<%- url_for(post.path) %>" class="flex gap-3 group">
@@ -262,7 +286,7 @@
     <!-- 3. Recent Posts -->
     <% if(site.posts.length > 0 && theme.sidebar_post_settings.latest_posts.enabled) { %>
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
-            <h3 class="font-bold mb-4 dark:text-white border-l-4 border-blue-400 pl-2"><%= theme.sidebar_post_settings.latest_posts.title %></h3>
+            <h3 class="font-bold mb-4 dark:text-white border-l-4 border-blue-400 pl-2"><%= config?.theme_config?.sidebar_post_settings?.latest_posts?.title ?? __('sidebar.latest_posts') %></h3>
             <ul class="space-y-4">
                 <% site.posts.sort('date', -1).limit(theme.sidebar_post_settings.latest_posts.post_count).each(function(post){ %>
                 <li>

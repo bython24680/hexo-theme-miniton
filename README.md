@@ -11,6 +11,7 @@ A responsive, flat-design and lightweight [Hexo](http://hexo.io/) theme.
 - [Scaffolds](#scaffolds)
 - [Installation](#installation)
 - [How to use](#how-to-use)
+- [Language](#language)
 - [Configuration](#configuration)
 - [License](#license)
 
@@ -132,18 +133,66 @@ hexo new error404 404
 2. Move `source/_posts/404.md` file to `source/404.md`
 3. Build the website
 
+## Language
+
+Now we support these languages:
+
+- en
+- ja
+- zh-TW
+- zh-CN
+
+Please choose one and update the `language` setting in your blog's configuration file `_config.yml`. The default language is en.
+
 ## Configuration
 
 Add the following configurations under the `theme_config` section in your blog's `_config.yml` file.
 
 ### Navigation menu
 
+Miniton provides two types of menu, prototype version with language supported, and customized version without translate.
+
+- Prototype version with i18n
+
 A menu item is a key-value pair of display text and its link.
 
 ```yml
+menu_customized: false
 menu:
-  - Home: /
-  - Articles: /archives
+  Home: /
+  Articles: /archives
+  Topocs: /topics
+  Tags: /tags
+  Projects: /projects
+  About: /about
+```
+
+You can remove some pages if you don't need them.
+
+- Customized
+
+You have to set `menu_customized` to true to enable this feature.
+
+```yml
+menu_customized: true
+Home:
+  name: Home
+  link: /
+Articles:
+  name: Posts
+  link: /archives
+Topics:
+  name: Topics
+  link: /topics
+Tags:
+  name: Tags
+  link: /tags
+Projects:
+  name: Projects
+  link: /projects
+About:
+  name: About
+  link: /about
 ```
 
 ### Site information

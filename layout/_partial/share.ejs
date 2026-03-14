@@ -1,5 +1,5 @@
 <div class="flex flex-col sm:flex-row items-center gap-4 justify-between bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-    <span class="text-slate-600 dark:text-slate-300 font-medium text-sm">分享文章：</span>
+    <span class="text-slate-600 dark:text-slate-300 font-medium text-sm"><%= __('common.share.title_post') %>：</span>
     <div class="flex flex-wrap justify-center gap-3">
         <!-- Twitter/X -->
         <button onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href), '_blank')" 
@@ -26,9 +26,9 @@
         </button>
 
         <!-- Instagram (Copy Link) / Generic Copy -->
-        <button onclick="copyLink()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-600 hover:bg-indigo-500 dark:hover:bg-indigo-300 hover:text-white dark:hover:text-black transition-colors text-slate-600 dark:text-slate-300 group relative" title="複製連結 (適用於 Instagram)">
+        <button onclick="copyLink()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-600 hover:bg-indigo-500 dark:hover:bg-indigo-300 hover:text-white dark:hover:text-black transition-colors text-slate-600 dark:text-slate-300 group relative" title="<%= __('common.share.copy_link_tooltip') %>">
             <i class="fas fa-link"></i>
-            <span id="copy-tooltip" class="absolute bottom-full mb-2 px-2 py-1 text-xs bg-black text-white rounded opacity-0 transition-opacity pointer-events-none whitespace-nowrap">已複製!</span>
+            <span id="copy-tooltip" class="absolute bottom-full mb-2 px-2 py-1 text-xs bg-black text-white rounded opacity-0 transition-opacity pointer-events-none whitespace-nowrap"><%= __('common.share.copied_hint') %></span>
         </button>
     </div>
 </div>

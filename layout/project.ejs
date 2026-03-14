@@ -9,7 +9,8 @@
     <div class="max-w-5xl mx-auto text-center relative z-10">
         <!-- 返回連結 -->
         <a href="<%- url_for('projects') %>" class="inline-flex items-center text-sm text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-white mb-8 transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i> 返回專案列表
+            <i class="fas fa-arrow-left mr-2"></i>
+            <%= __('project.back_to_projects_page') %>
         </a>
 
         <!-- 專案類型標籤 (Project Type Badge) -->
@@ -31,7 +32,7 @@
 
         <!-- 作者列表 -->
         <div class="flex items-center justify-center gap-2 mb-10">
-            <span class="text-sm text-slate-500 dark:text-slate-400 mr-2">Created by</span>
+            <span class="text-sm text-slate-500 dark:text-slate-400 mr-2"><%= __('project.created_by') %></span>
             <div class="flex -space-x-2">
                 <% page.project_authors.forEach(function (author) { %>
                 <img class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800" src="https://ui-avatars.com/api/?name=<%= author %>&background=random&color=fff" alt="<%= author %>" title="<%= author %>">
@@ -53,7 +54,7 @@
             <!-- Button: Source Code / Repo -->
             <a href="<%= page.project_repo_url %>" class="px-8 py-3.5 bg-white dark:bg-slate-700 text-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center gap-2">
                 <i class="fab fa-github"></i>
-                View Code
+                <%= __('project.action_button.view_code') %>
             </a>
             <% } %>
 
@@ -61,7 +62,7 @@
             <!-- Button: Documentation / Download (Secondary) -->
             <a href="<%= page.project_docs_url %>" class="px-8 py-3.5 text-slate-600 dark:text-slate-300 font-medium hover:-translate-y-0.5 transition-colors flex items-center gap-2">
                 <i class="fas fa-book"></i>
-                Documentation
+                <%= __('project.action_button.document') %>
             </a>
             <% } %>
         </div>
@@ -79,7 +80,7 @@
     <!-- Share Buttons (From v11) -->
     <div class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
         <div class="flex flex-col sm:flex-row items-center gap-4 justify-between bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl">
-            <span class="text-slate-600 dark:text-slate-300 font-bold">覺得這個專案很酷？分享給朋友！</span>
+            <span class="text-slate-600 dark:text-slate-300 font-bold"><%= __('project.share.description') %></span>
             <div class="flex flex-wrap justify-center gap-3">
                 <button onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href), '_blank')" 
                     class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-blue-400 transition-colors">
@@ -97,10 +98,10 @@
                     class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-[#CF682F] dark:hover:text-[#CF682F] transition-colors">
                     <i class="font-bold text-xs">P</i>
                 </button>
-                <button onclick="copyLink()" title="複製連結 (適用於 Instagram)"
+                <button onclick="copyLink()" title="<%= __('common.share.copy_link_tooltip') %>"
                     class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm hover:text-primary transition-colors group relative">
                     <i class="fas fa-link"></i>
-                    <span id="copy-tooltip" class="absolute bottom-full mb-2 px-2 py-1 text-xs bg-black text-white rounded opacity-0 transition-opacity pointer-events-none whitespace-nowrap">已複製!</span>
+                    <span id="copy-tooltip" class="absolute bottom-full mb-2 px-2 py-1 text-xs bg-black text-white rounded opacity-0 transition-opacity pointer-events-none whitespace-nowrap"><%= __('common.share.copied_hint') %></span>
                 </button>
             </div>
         </div>

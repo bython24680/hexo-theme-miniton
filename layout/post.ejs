@@ -35,14 +35,14 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 pt-8 border-t border-slate-100 dark:border-slate-700">
         <% if (page.prev){ %>
         <a href="<%- url_for(page.prev.path) %>" class="border border-slate-200 dark:border-slate-700 rounded-lg p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-            <div class="text-xs text-slate-400 mb-1">上一篇</div>
+            <div class="text-xs text-slate-400 mb-1"><%= __('post.prev_post') %></div>
             <div class="text-slate-700 dark:text-slate-200 font-medium truncate"><%= page.prev.title %></div>
         </a>
         <% } %>
         
         <% if (page.next){ %>
         <a href="<%- url_for(page.next.path) %>" class="border border-slate-200 dark:border-slate-700 rounded-lg p-4 text-right hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-            <div class="text-xs text-slate-400 mb-1">下一篇</div>
+            <div class="text-xs text-slate-400 mb-1"><%= __('post.next_post') %></div>
             <div class="text-slate-700 dark:text-slate-200 font-medium truncate"><%= page.next.title %></div>
         </a>
         <% } %>
