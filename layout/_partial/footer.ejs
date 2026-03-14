@@ -81,10 +81,23 @@
             <div>
                 <h3 class="font-bold text-lg mb-4 dark:text-white"><%= __('footer.navigation') %></h3>
                 <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
-                    <% for (var i in menu) { %>
-                        <li>
-                            <a href="<%- url_for(menu[i]) %>" class="hover:text-primary"><%= __('menu.' + i.toLowerCase()) %></a>
-                        </li>
+                    <%
+                    var isMenuCustomized = config?.theme_config?.menu_customized ?? theme.menu_customized ?? false
+                    var themeConfigMenu = isMenuCustomized ? theme.menu.customized : theme.menu.prototype
+                    var menu = config?.theme_config?.menu ?? themeConfigMenu
+                    %>
+                    <% if (isMenuCustomized) { %>
+                        <% for (var i in menu) { %>
+                            <li>
+                                <a href="<%- url_for(menu[i].link) %>" class="hover:text-primary"><%= menu[i].name %></a>
+                            </li>
+                        <% } %>
+                    <% } else { %>
+                        <% for (var i in menu) { %>
+                            <li>
+                                <a href="<%- url_for(menu[i]) %>" class="hover:text-primary"><%= __('menu.' + i.toLowerCase()) %></a>
+                            </li>
+                        <% } %>
                     <% } %>
                 </ul>
             </div>
