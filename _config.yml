@@ -64,6 +64,17 @@ social:
   github: https://github.com/
   twitter: https://twitter.com/
   email: mailto:example@example.com
+  instagram:
+  threads:
+  linkedin:
+  duolingo:
+  facebook:
+  bluesky:
+  line:
+  custom_links:
+    - url:
+      icon:
+    - url:
 
 # Sidebar Settings
 sidebar_settings:
