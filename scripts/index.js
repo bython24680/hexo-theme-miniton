@@ -1,8 +1,8 @@
 hexo.extend.helper.register("social_links", function (themeSocials, styleType) {
   let styleTypes = [
     'text-slate-400 transform hover:scale-110 transition-all text-2xl',
-    'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors',
-    'text-slate-400 hover:text-primary transition-colors',
+    'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white dark:hover:text-slate-700 dark:hover:bg-indigo-400 transition-colors',
+    'text-slate-400 hover:text-primary hover:dark:text-indigo-400 transition-colors',
   ];
   let styleType0LinkSettings = {
     github: 'hover:text-[#333] dark:hover:text-white',
@@ -14,7 +14,7 @@ hexo.extend.helper.register("social_links", function (themeSocials, styleType) {
     line: 'hover:text-[#06C755]',
     duolingo: 'hover:text-[#58CC02]',
     instagram: 'hover:text-[#E4405F]',
-    email: 'hover:text-primary',
+    email: 'hover:text-primary hover:dark:text-indigo-400',
     custom_links: 'hover:text-[#333] dark:hover:text-white',
   };
   let icons = {
