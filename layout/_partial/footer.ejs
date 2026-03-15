@@ -30,21 +30,7 @@
                     <%= config?.theme_config?.footer?.description ?? __('footer.description') %>
                 </p>
                 <div class="flex gap-3">
-                    <% if(theme.social.twitter) { %>
-                        <a href="<%= theme.social.twitter %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                    <% } %>
-                    <% if(theme.social.github) { %>
-                        <a href="<%= theme.social.github %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    <% } %>
-                    <% if(theme.social.email) { %>
-                        <a href="<%= theme.social.email %>" class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded hover:bg-primary hover:text-white transition-colors">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    <% } %>
+                    <%- social_links(theme.social, 1) %>
                 </div>
             </div>
 
