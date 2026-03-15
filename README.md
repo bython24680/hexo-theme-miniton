@@ -246,14 +246,33 @@ hero:
 
 ### Social links
 
-Displayed in the sidebar under author information. A field is hidden if its value is empty.
+Displayed in the sidebar under author information, footer and about page. Support lots of social media sites and custom link. A field is hidden if its value is empty.
 
 ```yml
 social:
   github: URL of your GitHub profile
   twitter: URL of your X (Twitter) profile
   email: Email address (format is "mailto:your-email")
+  custom_links:
+    - url: discord-link
+      icon: fab fa-discord
+    - url:
 ```
+
+The full list with display order:
+
+- github
+- linkedin
+- duolingo
+- x(old: twitter)
+- instagram
+- threads
+- facebook
+- bluesky
+- line
+- email
+
+If you set custom links with `social.custom_links`, they will appear after email. There are two suppor types: only `url` and `icon` with `url`. If only url, the icon will use default icon: tailwindCSS icon `fas fa-link`, it is a link icon. If it sets tailwindCSS icon, it will display the icon.
 
 ### Sidebar settings
 
