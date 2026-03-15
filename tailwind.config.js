@@ -3,6 +3,7 @@ module.exports = {
     './layout/**/*.ejs',
     './source/**/*.md',
     './source/**/*.html',
+    './scripts/*.js',
     '../../source/**/*.md', // 掃描 Hexo 主專案的文章
     '../../source/**/*.html',
   ],
