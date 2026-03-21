@@ -78,5 +78,18 @@
   <% if (theme.disqus_shortname && page.layout === 'post') { %>
   <script id="dsq-count-scr" src="//<%= theme.disqus_shortname %>.disqus.com/count.js" async></script>
   <% } %>
+  <%
+    var isHighlightNeedLineNumber = theme.highlightjs.line_number ?? true;
+  %>
+  <script src="<%= url_for('js/highlight.min.js') %>"></script>
+  <script>
+    hljs.highlightAll();
+  </script>
+  <% if (isHighlightNeedLineNumber) { %>
+  <script src="<%= url_for('js/highlightjs-line-numbers.min.js') %>"></script>
+  <script>
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <% } %>
 </body>
 </html>

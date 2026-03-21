@@ -65,6 +65,30 @@
   <link rel="stylesheet" href="<%= url_for('css/final.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/style.css') %>">
 
+  <!-- highlight -->
+  <%
+    var highlightTheme = theme.highlightjs.theme ?? 'default';
+    var isHighlightNeedLineNumber = theme.highlightjs.line_number ?? true;
+    var validThemes = ['dark', 'default', 'github-dark', 'github-light', 'monokai', 'stackoverflow-dark', 'stackoverflow-light'];
+    if (!validThemes.includes(highlightTheme)) {
+        highlightTheme = 'default';
+    }
+    var highlightThemeFile = 'css/highlight-' + highlightTheme + '.min.css';
+  %>
+  <link rel="stylesheet" href="<%- url_for(highlightThemeFile) %>">
+  <% if (isHighlightNeedLineNumber) { %>
+  <style>
+    #post-content pre code.hljs td.hljs-ln-line.hljs-ln-numbers {
+        border-right: 1px solid;
+        padding-right: 10px;
+        text-align: center;
+    }
+    #post-content pre code.hljs td.hljs-ln-line.hljs-ln-code {
+        padding-left: 15px;
+    }
+  </style>
+  <% } %>
+
   <!-- Google Analytics -->
   <% if (theme.google_analytics){ %>
   <script async src="https://www.googletagmanager.com/gtag/js?id=<%= theme.google_analytics %>"></script>
