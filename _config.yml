@@ -125,6 +125,10 @@ content_settings:
     page_description: "這裡展示了我參與開發的開源專案、Side Projects 以及實驗性作品。"
     no_project_text: "目前沒有專案或作品可供瀏覽。"
 
+# Writing
+highlightjs:
+  theme: monokai
+  line_number: true
 
 # Footer Settings
 footer:

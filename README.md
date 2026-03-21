@@ -329,6 +329,28 @@ content_settings:
     item_name: "標籤"
 ```
 
+### Writing
+
+Miniton use highlight.js to highlight code block.
+
+```
+highlightjs:
+  theme: monokai
+  line_number: true
+```
+
+Miniton supports these highlight theme, the default is `monokai`. Please copy the name and paste to `highlightjs.theme`.
+
+- default
+- dark
+- monokai
+- github-light
+- github-dark
+- stackoverflow-light
+- stackoverflow-dark
+
+You can see the theme demo on [Demo - highlight.js](https://highlightjs.org/demo).
+
 ### Footer settings
 
 The footer grid adjusts automatically based on enabled blocks, with a minimum of 3 columns.
