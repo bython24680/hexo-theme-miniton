@@ -121,14 +121,13 @@
                 return postDate.getFullYear() === now.getFullYear() && postDate.getMonth() === now.getMonth();
             });
         %>
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
+            <div id="sidebar-calendar-this-month" class="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-5 border border-slate-100 dark:border-slate-700">
                 <h3 class="font-bold mb-4 dark:text-white border-l-4 border-green-400 pl-2"><%= config?.theme_config?.sidebar_settings?.calendar_this_month?.title ?? __('sidebar.calendar_this_month') %></h3>
                 <div class="calendar-grid dark:text-slate-300 text-xs">
                     <%
                     var now = new Date();
                     var year = now.getFullYear();
                     var month = now.getMonth();
-                    var today = now.getDate();
                     var firstDay = new Date(year, month, 1).getDay();
                     var daysInMonth = new Date(year, month + 1, 0).getDate();
                     %>
@@ -151,7 +150,7 @@
                             cssPadding = 'py-1';
                         }
                         %>
-                        <div class="<%= d === today ? 'today ' + cssPadding + ' rounded bg-primary text-white' : cssPadding %>">
+                        <div class="sidebar-calendar-this-month__date <%= cssPadding %>">
                             <%= d %>
                             <% if(hasPost) { %>
                                 <div class="w-1.5 h-1.5 bg-indigo-400 dark:bg-indigo-300 rounded-full mx-auto mt-1"></div>
@@ -159,6 +158,18 @@
                         </div>
                     <% } %>
                 </div>
+                <script>
+                let sideCalendarThisMonthEle = document.getElementById('sidebar-calendar-this-month');
+                console.log(sideCalendarThisMonthEle);
+                if (sideCalendarThisMonthEle) {
+                    let dateToday = parseInt((new Date()).getDate());
+                    sideCalendarThisMonthEle.querySelectorAll('div.sidebar-calendar-this-month__date').forEach(function (dateNode) {
+                        if (dateToday == parseInt(dateNode.innerText.trim())) {
+                            dateNode.classList.add('today', 'rounded', 'bg-primary', 'text-white', 'dark:bg-primary-dark');
+                        }
+                    });
+                }
+                </script>
             </div>
         <% } %>
     </div>
